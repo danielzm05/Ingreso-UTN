@@ -1,16 +1,14 @@
-import { useState } from "react";
-import { ExerciseCard } from "./components/Exercise";
-import { TestCard } from "./components/Test";
-import { Header } from "./components/Header";
+import { Home } from "./pages/Home";
+import { Examenes } from "./pages/Examenes";
+import { Route, Routes } from "react-router";
 
 function App() {
   return (
     <>
-      <Header />
-      <main className="flex flex-col gap-3 px-10 py-11">
-        <ExerciseCard />
-        <TestCard />
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/Examenes" element={<Examenes />}></Route>
+      </Routes>
     </>
   );
 }
