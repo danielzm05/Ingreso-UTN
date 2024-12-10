@@ -1,9 +1,18 @@
 import { TestCard } from "../components/Test";
+import { useDataContext } from "../context/DataContext";
+import { useEffect } from "react";
 export function Examenes() {
+  const { tests, getTests } = useDataContext();
+
+  useEffect(() => {
+    getTests();
+    console.log(tests);
+  }, []);
+
   return (
     <>
       <main className="flex flex-col gap-3 px-10 py-11">
-        <TestCard fecha="2023" nombre={"Final"} descripcion={"Turno Mañana - Tema 3"} />
+        {tests && tests.map((t) => <TestCard key={t.id_examen} nombre={t.nombre} descripcion={t.descripcion} tema={t.tema} fecha={t.fecha} />)}
       </main>
     </>
   );

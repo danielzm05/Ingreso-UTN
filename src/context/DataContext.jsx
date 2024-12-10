@@ -9,13 +9,21 @@ export const useDataContext = () => {
 
 export const DataProvider = ({ children }) => {
   const [exercises, setExercises] = useState([]);
+  const [tests, setTests] = useState([]);
+
+  const getTests = async () => {
+    const { data, error } = await supabase.from("Examen").select("*");
+
+    if (error) throw error;
+    setTests(data);
+  };
 
   const getExercises = async () => {
     const { data, error } = await supabase.from("Ejercicio").select("*");
 
     if (error) throw error;
     setExercises(data);
-    console.log(exercises);
   };
-  return <DataContext.Provider value={{ exercises, getExercises }}>{children}</DataContext.Provider>;
+
+  return <DataContext.Provider value={{ exercises, tests, getTests, getExercises }}>{children}</DataContext.Provider>;
 };
