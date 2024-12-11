@@ -16,7 +16,11 @@ export function Home() {
           exercises.map((ex) => (
             <ExerciseCard
               key={ex.id_ejercicio}
-              fecha={2023}
+              id={ex.id_ejercicio}
+              id_examen={ex.Examen.id_examen}
+              fecha={ex.Examen.fecha}
+              examen={ex.Examen.nombre}
+              numero={ex.numero}
               consigna={ex.consigna}
               categorias={ex.Ejercicio_Categoria}
               img={ex.img ? ex.img : "https://www.creativefabrica.com/wp-content/uploads/2019/03/File-Icon-by-Kanggraphic-580x386.jpg"}

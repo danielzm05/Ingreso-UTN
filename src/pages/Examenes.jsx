@@ -12,7 +12,10 @@ export function Examenes() {
   return (
     <>
       <main className="flex flex-col gap-3 px-10 py-11">
-        {tests && tests.map((t) => <TestCard key={t.id_examen} nombre={t.nombre} descripcion={t.descripcion} tema={t.tema} fecha={t.fecha} />)}
+        {tests &&
+          tests.map((t) => (
+            <TestCard key={t.id_examen} id={t.id_examen} nombre={t.nombre} descripcion={t.descripcion} tema={t.tema} fecha={t.fecha} />
+          ))}
       </main>
     </>
   );
