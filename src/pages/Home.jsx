@@ -7,8 +7,8 @@ export function Home() {
 
   useEffect(() => {
     getExercises();
-    console.log(exercises);
   }, []);
+
   return (
     <>
       <main className="flex flex-col gap-3 p-10">
