@@ -1,9 +1,20 @@
 import { useState } from "react";
+import { InlineMath, BlockMath } from "react-katex";
+import "katex/dist/katex.min.css";
+import { MathfieldElement } from "mathlive";
+
 export function NewExerciseForm() {
   const [formValues, setFormValues] = useState({
     descripcion: "",
     tema: "",
   });
+
+  const [formula, setFormula] = useState("");
+
+  const handleInputFormula = (event) => {
+    setFormula(event.target.value);
+    console.log(formula);
+  };
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -37,6 +48,15 @@ export function NewExerciseForm() {
         Respuesta
         <input type="text" name="respuesta" onChange={handleInput} className="text-sm bg-background border border-slate-800 rounded-md h-9" />
       </label>
+
+      <div>
+        <h3>Editor Interactivo con Mathlive</h3>
+        <math-field onInput={handleInputFormula} value={formula} style={{ width: "100%", height: "50px" }}></math-field>
+        <div style={{ marginTop: "20px" }}>
+          <h4>Vista previa:</h4>
+          <BlockMath math={formula} />
+        </div>
+      </div>
 
       <input type="submit" value="Crear" className="p-2 rounded-xl font-semibold w-fit bg-yellow-500 text-slate-900 cursor-pointer" />
     </form>
