@@ -19,9 +19,10 @@ export const DataProvider = ({ children }) => {
   };
 
   const getExercises = async () => {
-    const { data, error } = await supabase.from("Ejercicio").select("*");
+    const { data, error } = await supabase.from("Ejercicio").select(` *, Ejercicio_Categoria ( Categoria (*) ) `);
 
     if (error) throw error;
+    console.log(data);
     setExercises(data);
   };
 

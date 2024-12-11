@@ -18,6 +18,7 @@ export function Home() {
               key={ex.id_ejercicio}
               fecha={2023}
               consigna={ex.consigna}
+              categorias={ex.Ejercicio_Categoria}
               img={ex.img ? ex.img : "https://www.creativefabrica.com/wp-content/uploads/2019/03/File-Icon-by-Kanggraphic-580x386.jpg"}
             />
           ))}
