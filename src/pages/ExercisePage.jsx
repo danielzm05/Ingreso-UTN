@@ -11,7 +11,7 @@ export function ExercisePage() {
 
   return (
     exercises && (
-      <article className="m-3 flex py-3 px-5 gap-3 border border-slate-800 rounded-xl">
+      <article className="m-10 flex py-3 px-5 gap-3 border border-slate-800 rounded-xl">
         {exercises[0].img ? (
           <img className="rounded bg-white aspect-square w-32 h-32 object-contain" src={exercises[0].img} alt={exercises[0].consigna} />
         ) : null}
@@ -21,11 +21,7 @@ export function ExercisePage() {
               {exercises[0].Examen.fecha} {exercises[0].Examen.nombre} {"| Ejercicio"} {exercises[0].numero}
             </p>
           </header>
-          <h1 className="max-w-full text-lg text-start font-semibold">
-            {exercises[0].numero}
-            {") "}
-            {exercises[0].consigna}
-          </h1>
+          <h1 className="max-w-full text-lg text-start font-semibold">{exercises[0].consigna}</h1>
 
           <footer className="w-full text-end">
             <p className="w-full text-end font-semibold">RTA: {exercises[0].respuesta}</p>

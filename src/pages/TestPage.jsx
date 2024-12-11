@@ -14,13 +14,15 @@ export function TestPage() {
 
   return (
     tests && (
-      <article className="m-3 flex flex-col py-3 px-5 gap-1 border border-slate-800 rounded-xl">
-        <h1 className="max-w-full text-3xl text-start font-bold">
-          {tests[0].nombre} {tests[0].fecha}
-        </h1>
-        <p className="text-gray-500 font-semibold">
-          {tests[0].tema ? `Tema: ${tests[0].tema}` : ""} {tests[0].descripcion}
-        </p>
+      <article className="m-10 flex flex-col py-3 px-5 gap-1 border border-slate-800 rounded-xl">
+        <header className="py-3">
+          <h1 className="max-w-full text-3xl text-start font-bold">
+            {tests[0].nombre} {tests[0].fecha}
+          </h1>
+          <p className="text-gray-500 font-semibold">
+            {tests[0].tema ? `Tema: ${tests[0].tema}` : ""} {tests[0].descripcion}
+          </p>
+        </header>
 
         <section className="flex flex-col">
           {tests[0].Ejercicio.map((ex) => (

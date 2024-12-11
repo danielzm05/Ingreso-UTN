@@ -11,7 +11,7 @@ export function Home() {
   }, []);
   return (
     <>
-      <main className="flex flex-col gap-3 px-10 py-11">
+      <main className="flex flex-col gap-3 p-10">
         {exercises &&
           exercises.map((ex) => (
             <ExerciseCard
