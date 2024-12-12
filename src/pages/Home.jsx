@@ -3,6 +3,7 @@ import { ExerciseCard } from "../components/ExerciseCard";
 import { useDataContext } from "../context/DataContext";
 import parse from "html-react-parser";
 import { InlineMath } from "react-katex";
+import { SearchBar } from "../components/SearchBar";
 import "katex/dist/katex.min.css";
 
 export function Home() {
@@ -24,6 +25,7 @@ export function Home() {
   return (
     <>
       <main className="flex flex-col gap-3 p-10">
+        <SearchBar placeholder="Buscar ejercicio..." />
         {exercises &&
           exercises.map((ex) => (
             <ExerciseCard
