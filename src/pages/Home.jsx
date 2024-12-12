@@ -1,6 +1,9 @@
 import { useEffect } from "react";
-import { ExerciseCard } from "../components/Exercise";
+import { ExerciseCard } from "../components/ExerciseCard";
 import { useDataContext } from "../context/DataContext";
+import parse from "html-react-parser";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 
 export function Home() {
   const { exercises, getExercises } = useDataContext();
@@ -8,6 +11,15 @@ export function Home() {
   useEffect(() => {
     getExercises();
   }, []);
+
+  const renderContent = (htmlString) =>
+    parse(htmlString, {
+      replace: (domNode) => {
+        if (domNode.name === "math") {
+          return <InlineMath math={domNode.children[0].data} />;
+        }
+      },
+    });
 
   return (
     <>
@@ -21,7 +33,7 @@ export function Home() {
               fecha={ex.Examen.fecha}
               examen={ex.Examen.nombre}
               numero={ex.numero}
-              consigna={ex.consigna}
+              consigna={renderContent(ex.consigna)}
               categorias={ex.Ejercicio_Categoria}
               img={ex.img ? ex.img : "https://www.creativefabrica.com/wp-content/uploads/2019/03/File-Icon-by-Kanggraphic-580x386.jpg"}
             />

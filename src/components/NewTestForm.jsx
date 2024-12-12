@@ -1,21 +1,21 @@
 import { useState } from "react";
+import { useDataContext } from "../context/DataContext";
 
 export function NewTestForm() {
+  const { createTest } = useDataContext();
   const [formValues, setFormValues] = useState({
     descripcion: "",
-    tema: "",
+    tema: null,
   });
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-
     setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValues);
+    createTest(formValues);
   };
 
   return (

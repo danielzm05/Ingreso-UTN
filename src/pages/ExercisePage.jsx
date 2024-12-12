@@ -1,6 +1,10 @@
 import { useParams } from "react-router";
 import { useEffect } from "react";
+import { ExercisePageCard } from "../components/ExercisePageCard";
 import { useDataContext } from "../context/DataContext";
+import parse from "html-react-parser";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 
 export function ExercisePage() {
   const { exercises, getExercises } = useDataContext();
@@ -9,25 +13,22 @@ export function ExercisePage() {
     getExercises(id);
   }, []);
 
-  return (
-    exercises && (
-      <article className="m-10 flex py-3 px-5 gap-3 border border-slate-800 rounded-xl">
-        {exercises[0].img ? (
-          <img className="rounded bg-white aspect-square w-32 h-32 object-contain" src={exercises[0].img} alt={exercises[0].consigna} />
-        ) : null}
-        <section className="flex flex-col gap-2 items-start justify-start">
-          <header>
-            <p className="text-gray-500 font-semibold">
-              {exercises[0].Examen.fecha} {exercises[0].Examen.nombre} {"| Ejercicio"} {exercises[0].numero}
-            </p>
-          </header>
-          <h1 className="max-w-full text-lg text-start font-semibold">{exercises[0].consigna}</h1>
+  const renderContent = (htmlString) =>
+    parse(htmlString, {
+      replace: (domNode) => {
+        if (domNode.name === "math") {
+          return <InlineMath math={domNode.children[0].data} />;
+        }
+      },
+    });
 
-          <footer className="w-full text-end">
-            <p className="w-full text-end font-semibold">RTA: {exercises[0].respuesta}</p>
-          </footer>
-        </section>
-      </article>
-    )
+  return exercises.length > 1 ? null : (
+    <ExercisePageCard
+      respuesta={renderContent(exercises[0]?.respuesta)}
+      consigna={renderContent(exercises[0]?.consigna)}
+      numero={exercises[0]?.numero}
+      fecha={exercises[0]?.Examen.fecha}
+      nombre={exercises[0]?.Examen.nombre}
+    />
   );
 }

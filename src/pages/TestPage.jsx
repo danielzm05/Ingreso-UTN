@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import { ExerciseTestCard } from "../components/ExerciseTestCard";
 import { useDataContext } from "../context/DataContext";
+import parse from "html-react-parser";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 
 export function TestPage() {
   const { tests, getTests } = useDataContext();
@@ -11,6 +14,15 @@ export function TestPage() {
     getTests(id_examen);
     console.log(tests);
   }, []);
+
+  const renderContent = (htmlString) =>
+    parse(htmlString, {
+      replace: (domNode) => {
+        if (domNode.name === "math") {
+          return <InlineMath math={domNode.children[0].data} />;
+        }
+      },
+    });
 
   return (
     tests && (
@@ -26,7 +38,7 @@ export function TestPage() {
 
         <section className="flex flex-col">
           {tests[0].Ejercicio.map((ex) => (
-            <ExerciseTestCard key={ex.id_ejercicio} id={ex.id_ejercicio} numero={ex.numero} consigna={ex.consigna} />
+            <ExerciseTestCard key={ex.id_ejercicio} id={ex.id_ejercicio} numero={ex.numero} consigna={renderContent(ex.consigna)} />
           ))}
         </section>
       </article>
