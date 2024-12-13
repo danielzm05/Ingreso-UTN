@@ -2,9 +2,10 @@ import { Link } from "react-router";
 export function ExerciseCard({ id, id_examen, numero, fecha, examen, consigna, img, categorias }) {
   return (
     <Link to={`/Examenes/${id_examen}/ejercicio/${id}`}>
-      <article className="max-h-40 flex p-3 gap-3 border border-slate-800 rounded-xl cursor-pointer hover:bg-slate-900 transition duration-300 ease-in-out">
-        <img className="rounded bg-white aspect-square w-28 h-28 object-contain" src={img} alt={consigna} />
-        <section className="flex flex-col gap-1 items-start justify-start">
+      <article className="h-36 flex justify-between p-3 gap-3 border border-slate-800 rounded-xl cursor-pointer hover:bg-slate-900 transition duration-300 ease-in-out">
+        {img ? <img className="rounded bg-white aspect-square w-28 h-full object-contain" src={img} alt={consigna} /> : null}
+
+        <section className="w-full flex flex-col gap-1 items-start justify-start">
           <header>
             <p className="text-gray-500 text-sm">
               {examen} {fecha}

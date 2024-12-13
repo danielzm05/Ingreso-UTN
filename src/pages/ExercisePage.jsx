@@ -26,6 +26,8 @@ export function ExercisePage() {
     <ExercisePageCard
       respuesta={renderContent(exercises[0]?.respuesta)}
       consigna={renderContent(exercises[0]?.consigna)}
+      img={exercises[0]?.img}
+      solucion={exercises[0]?.solucion}
       numero={exercises[0]?.numero}
       fecha={exercises[0]?.Examen.fecha}
       nombre={exercises[0]?.Examen.nombre}

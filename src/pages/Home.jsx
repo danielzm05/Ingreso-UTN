@@ -39,7 +39,7 @@ export function Home() {
               numero={ex.numero}
               consigna={renderContent(ex.consigna)}
               categorias={ex.Ejercicio_Categoria}
-              img={ex.img ? ex.img : "https://www.creativefabrica.com/wp-content/uploads/2019/03/File-Icon-by-Kanggraphic-580x386.jpg"}
+              img={ex.img}
             />
           ))
         ) : (
