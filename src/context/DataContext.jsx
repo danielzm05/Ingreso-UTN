@@ -35,7 +35,16 @@ export const DataProvider = ({ children }) => {
     console.log(newEx);
     const { error } = await supabase
       .from("Ejercicio")
-      .insert([{ consigna: newEx.consigna, numero: newEx.numero, respuesta: newEx.respuesta, id_examen: newEx.id_examen }])
+      .insert([
+        {
+          consigna: newEx.consigna,
+          numero: newEx.numero,
+          respuesta: newEx.respuesta,
+          id_examen: newEx.id_examen,
+          img: newEx.img,
+          solucion: newEx.solucion,
+        },
+      ])
       .select("*");
 
     if (error) throw error;

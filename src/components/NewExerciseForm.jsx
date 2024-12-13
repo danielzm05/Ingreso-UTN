@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDataContext } from "../context/DataContext";
+import { ImagePlus, Image } from "lucide-react";
 import "//unpkg.com/mathlive";
 import "katex/dist/katex.min.css";
 
@@ -10,6 +11,8 @@ export function NewExerciseForm() {
     descripcion: "",
     tema: "",
     respuesta: "",
+    img: "",
+    solucion: "",
   });
 
   useEffect(() => {
@@ -71,6 +74,40 @@ export function NewExerciseForm() {
           onChange={handleInput}
           className="px-3 text-sm bg-background border border-slate-800 rounded-md h-9"
         />
+      </label>
+      <label htmlFor="img" className="flex flex-col font-medium text-sm gap-1">
+        <div className="flex gap-1 items-center">
+          <ImagePlus size={12} />
+          Id Imagen
+        </div>
+
+        <div className="flex gap-3">
+          <input type="text" name="img" onChange={handleInput} className="w-full px-3 text-sm bg-background border border-slate-800 rounded-md h-9" />
+          <img
+            src={`https://lh3.googleusercontent.com/d/${formValues?.img}`}
+            alt="imagen"
+            className="border border-slate-800 rounded-xl max-w-14 max-h-9"
+          />
+        </div>
+      </label>
+      <label htmlFor="solucion" className="flex flex-col font-medium text-sm gap-1">
+        <div className="flex gap-1 items-center">
+          <Image size={12} />
+          Id Imagen Solución
+        </div>
+        <div className="flex gap-3">
+          <input
+            type="text"
+            name="solucion"
+            onChange={handleInput}
+            className="w-full px-3 text-sm bg-background border border-slate-800 rounded-md h-9"
+          />
+          <img
+            src={`https://lh3.googleusercontent.com/d/${formValues?.solucion}`}
+            alt="imagen"
+            className="border border-slate-800 rounded-xl max-w-14 max-h-9"
+          />
+        </div>
       </label>
       <label htmlFor="respuesta" className="flex flex-col font-medium text-sm gap-1">
         Respuesta
