@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ExerciseCard } from "../components/ExerciseCard";
 import { useDataContext } from "../context/DataContext";
 import parse from "html-react-parser";
@@ -8,6 +8,7 @@ import "katex/dist/katex.min.css";
 
 export function Home() {
   const { exercises, getExercises } = useDataContext();
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     getExercises();
@@ -22,12 +23,13 @@ export function Home() {
       },
     });
 
+  const filteredExercises = exercises.filter((e) => e.consigna.toLowerCase().includes(searchTerm.toLowerCase()));
   return (
     <>
       <main className="flex flex-col gap-3 p-10">
-        <SearchBar placeholder="Buscar ejercicio..." />
-        {exercises &&
-          exercises.map((ex) => (
+        <SearchBar placeholder="Buscar ejercicio..." onSearch={(query) => setSearchTerm(query)} />
+        {filteredExercises.length > 0 ? (
+          filteredExercises.map((ex) => (
             <ExerciseCard
               key={ex.id_ejercicio}
               id={ex.id_ejercicio}
@@ -39,7 +41,10 @@ export function Home() {
               categorias={ex.Ejercicio_Categoria}
               img={ex.img ? ex.img : "https://www.creativefabrica.com/wp-content/uploads/2019/03/File-Icon-by-Kanggraphic-580x386.jpg"}
             />
-          ))}
+          ))
+        ) : (
+          <p className="text-center text-slate-800">No encontramos el ejercicio que buscabas :/</p>
+        )}
       </main>
     </>
   );
