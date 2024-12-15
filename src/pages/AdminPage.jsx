@@ -1,5 +1,5 @@
-import { NewTestForm } from "../components/NewTestForm";
-import { NewExerciseForm } from "../components/NewExerciseForm";
+import { NewTestForm } from "../components/form/NewTestForm";
+import { NewExerciseForm } from "../components/form/NewExerciseForm";
 export function AdminPage() {
   return (
     <main className="flex flex-col gap-3 m-10">

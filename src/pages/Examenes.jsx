@@ -1,5 +1,5 @@
-import { SearchBar } from "../components/SearchBar";
-import { TestCard } from "../components/Test";
+import { SearchBar } from "../components/ui/SearchBar";
+import { TestCard } from "../components/ui/TestCard";
 import { useDataContext } from "../context/DataContext";
 import { useEffect, useState } from "react";
 

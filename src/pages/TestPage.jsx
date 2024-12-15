@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router";
-import { ExerciseTestCard } from "../components/ExerciseTestCard";
+import { ExerciseTestCard } from "../components/ui/ExerciseTestCard";
 import { useDataContext } from "../context/DataContext";
 import parse from "html-react-parser";
 import { InlineMath } from "react-katex";

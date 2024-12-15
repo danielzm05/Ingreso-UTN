@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { ExerciseCard } from "../components/ExerciseCard";
+import { ExerciseCard } from "../components/ui/ExerciseCard";
 import { useDataContext } from "../context/DataContext";
 import parse from "html-react-parser";
 import { InlineMath } from "react-katex";
-import { SearchBar } from "../components/SearchBar";
+import { SearchBar } from "../components/ui/SearchBar";
 import "katex/dist/katex.min.css";
 
 export function Home() {

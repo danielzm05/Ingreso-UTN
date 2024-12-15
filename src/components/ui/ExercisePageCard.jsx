@@ -48,7 +48,7 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha, nomb
         </footer>
       </section>
 
-      {showSolution ? (
+      {showSolution && solucion ? (
         <section id="solution" className="py-5 flex justify-between flex-wrap gap-5 border-t border-slate-800">
           <img src={solucion} alt={consigna} />
           <section className=" text-gray-500 ">
