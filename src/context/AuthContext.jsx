@@ -1,7 +1,6 @@
 import { useEffect, useState, createContext, useContext } from "react";
 import { supabase } from "../backend/client";
 import { useNavigate } from "react-router";
-import { AuthWeakPasswordError } from "@supabase/supabase-js";
 
 export const AuthContext = createContext(null);
 
@@ -47,7 +46,7 @@ export const AuthProvider = ({ children }) => {
 
   const getUserInfo = async (userId = user.id) => {
     if (userId) {
-      const { data, error } = await supabase.from("usuario_rol").select("*").eq("id_usuario", userId);
+      const { data, error } = await supabase.from("usuario").select("*, usuario_rol (*)").eq("id_usuario", userId);
 
       if (error) throw error;
       setUserInfo(data[0]);
