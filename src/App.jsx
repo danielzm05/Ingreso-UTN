@@ -5,10 +5,13 @@ import { LoginPage } from "./pages/LoginPage";
 import { SignupPage } from "./pages/SignUpPage";
 import { AdminPage } from "./pages/AdminPage";
 import { ExercisePage } from "./pages/ExercisePage";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import { useAuthContext } from "./context/AuthContext";
 import { Route, Routes } from "react-router";
 import { Header } from "./components/Header";
 
 function App() {
+  const { user, userInfo } = useAuthContext();
   return (
     <>
       <Header />

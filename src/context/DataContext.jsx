@@ -17,7 +17,6 @@ export const DataProvider = ({ children }) => {
       query = query.eq("id_examen", id);
     }
     const { data, error } = await query;
-    console.log(data);
     if (error) throw error;
     setTests(data);
   };
