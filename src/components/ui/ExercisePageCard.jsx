@@ -23,7 +23,7 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha, nomb
           <p className="text-end font-semibold">RTA: {respuesta}</p>
           <div className="flex gap-4 text-gray-500 font-medium">
             <div className="flex items-center gap-1  ">
-              <label className="flex items-center cursor-pointer relative" for="check-2">
+              <label className="flex items-center cursor-pointer relative" htmlFor="check-2">
                 <input
                   onChange={(e) => setDone(e.target.checked)}
                   type="checkbox"
@@ -34,7 +34,7 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha, nomb
                   <Check size={14} strokeWidth={3} />
                 </span>
               </label>
-              <label className={`cursor-pointer ${done ? "text-green-500" : "text-gray-500"} transition ease-in duration-300`} for="check-2">
+              <label className={`cursor-pointer ${done ? "text-green-500" : "text-gray-500"} transition ease-in duration-300`} htmlFor="check-2">
                 {done ? "Completado" : "Incompleto"}
               </label>
             </div>

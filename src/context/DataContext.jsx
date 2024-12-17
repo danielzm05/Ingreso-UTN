@@ -31,7 +31,15 @@ export const DataProvider = ({ children }) => {
   };
 
   const createExercise = async (newEx) => {
-    console.log(newEx);
+    const { error: errorImg } = await supabase.storage.from("Ejercicios").upload(`public/${newEx.img.name}`, newEx.img);
+
+    if (errorImg) {
+      console.error("Error al subir la imagen:", errorImg);
+      return;
+    }
+
+    const { data: ImgBucket } = supabase.storage.from("Ejercicios").getPublicUrl(`public/${newEx.img.name}`);
+
     const { error } = await supabase
       .from("Ejercicio")
       .insert([
@@ -40,7 +48,7 @@ export const DataProvider = ({ children }) => {
           numero: newEx.numero,
           respuesta: newEx.respuesta,
           id_examen: newEx.id_examen,
-          img: newEx.img,
+          img: ImgBucket.publicUrl,
           solucion: newEx.solucion,
         },
       ])

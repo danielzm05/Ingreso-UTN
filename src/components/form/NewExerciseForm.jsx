@@ -10,7 +10,6 @@ export function NewExerciseForm() {
   const [formula, setFormula] = useState("");
   const [formValues, setFormValues] = useState({
     descripcion: "",
-    tema: "",
     respuesta: "",
     img: "",
     solucion: "",
@@ -27,6 +26,11 @@ export function NewExerciseForm() {
   const handleInput = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
+  };
+
+  const handleImg = (e) => {
+    const { name } = e.target;
+    setFormValues({ ...formValues, [name]: e.target?.files[0] });
   };
 
   const handleSubmit = (e) => {
@@ -57,30 +61,15 @@ export function NewExerciseForm() {
         </select>
       </label>
 
-      <Input label="Número" type="number" name="numero" onChange={handleInput} required={true} />
+      <Input label="Número" type="text" name="numero" onChange={handleInput} required={true} />
       <Input label="Consigna" type="text" name="consigna" onChange={handleInput} required={true} />
+      <Input label="Imagen consigna" type="file" name="img" onChange={handleImg} />
 
-      <div className="flex items-end gap-3">
-        <Input label="Id Imagen" type="text" name="img" onChange={handleInput} />
-
-        <img
-          src={`https://lh3.googleusercontent.com/d/${formValues?.img}`}
-          alt="imagen"
-          className="border border-slate-800 rounded-xl max-w-14 max-h-9"
-        />
-      </div>
-      <div className="flex items-end gap-3">
-        <Input label="Solución" type="text" name="solucion" onChange={handleInput} />
-        <img
-          src={`https://lh3.googleusercontent.com/d/${formValues?.solucion}`}
-          alt="imagen"
-          className="border border-slate-800 rounded-xl max-w-14 max-h-9"
-        />
-      </div>
+      <Input label="Solución" type="file" name="solucion" onChange={handleImg} />
 
       <Input label="Respuesta" type="text" name="respuesta" required={true} onChange={handleInput} />
 
-      <p>
+      <p className="font-medium">
         {"<math>"}
         {formula}
         {"</math>"}
