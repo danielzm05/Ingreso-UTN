@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-export function ExerciseCard({ id, id_examen, numero, fecha, examen, consigna, img, categorias }) {
+export function ExerciseCard({ id, id_examen, numero, tema, fecha, examen, consigna, img, categorias }) {
   return (
     <Link to={`/Examenes/${id_examen}/ejercicio/${id}`}>
       <article className="h-36 flex justify-between p-3 gap-3 border border-slate-800 rounded-xl cursor-pointer hover:bg-slate-900 transition duration-300 ease-in-out">
@@ -8,7 +8,7 @@ export function ExerciseCard({ id, id_examen, numero, fecha, examen, consigna, i
         <section className="w-full flex flex-col gap-1 items-start justify-start">
           <header>
             <p className="text-gray-500 text-sm">
-              {examen} {fecha}
+              {examen} {fecha} {tema ? `| Tema ${tema}` : null}
             </p>
           </header>
           <h1 className="max-h-12 max-w-full text-base text-start font-semibold text-ellipsis overflow-hidden">{consigna}</h1>

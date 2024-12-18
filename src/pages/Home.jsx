@@ -36,6 +36,7 @@ export function Home() {
               id_examen={ex.Examen.id_examen}
               fecha={ex.Examen.fecha}
               examen={ex.Examen.nombre}
+              tema={ex.Examen.tema}
               numero={ex.numero}
               consigna={renderContent(ex.consigna)}
               categorias={ex.Ejercicio_Categoria}

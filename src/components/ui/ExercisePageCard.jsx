@@ -3,13 +3,13 @@ import { useState } from "react";
 
 export function ExercisePageCard({ respuesta, consigna, img, numero, fecha, nombre, solucion }) {
   const [done, setDone] = useState(false);
-  const [showSolution, setShowSolution] = useState(true);
+  const [showSolution, setShowSolution] = useState(false);
   return (
     <article className="m-10 flex flex-col p-5 gap-3 border border-slate-800 rounded-xl">
       <section className="min-w-full flex flex-col gap-2 items-start justify-start">
         <header>
           <p className="text-gray-500 font-semibold">
-            {fecha} {nombre} {"| Ejercicio"} {numero}
+            {fecha} {nombre} {numero ? `Ejercicio: ${numero}` : null}
           </p>
         </header>
         <h1 className="max-w-full text-lg text-start font-semibold">{consigna}</h1>
@@ -50,7 +50,7 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha, nomb
 
       {showSolution && solucion ? (
         <section id="solution" className="py-5 flex justify-between flex-wrap gap-5 border-t border-slate-800">
-          <img src={solucion} alt={consigna} />
+          <img src={solucion} alt={consigna} className="w-full max-w-4xl rounded-xl" />
           <section className=" text-gray-500 ">
             <h2 className="flex items-center gap-1 text-lg font-semibold ">
               <LightbulbIcon size={20} /> Formulas Utilizadas:

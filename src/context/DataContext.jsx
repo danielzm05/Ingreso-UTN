@@ -30,15 +30,21 @@ export const DataProvider = ({ children }) => {
     if (error) throw error;
   };
 
+  const uploadImg = async (nombre, img, examenId) => {
+    if (!img) return;
+
+    const { error } = await supabase.storage.from("Ejercicios").upload(`${examenId}/${nombre}`, img);
+
+    if (error) throw error;
+
+    const { data: urlImg } = supabase.storage.from("Ejercicios").getPublicUrl(`${examenId}/${nombre}`);
+
+    return urlImg.publicUrl;
+  };
+
   const createExercise = async (newEx) => {
-    const { error: errorImg } = await supabase.storage.from("Ejercicios").upload(`public/${newEx.img.name}`, newEx.img);
-
-    if (errorImg) {
-      console.error("Error al subir la imagen:", errorImg);
-      return;
-    }
-
-    const { data: ImgBucket } = supabase.storage.from("Ejercicios").getPublicUrl(`public/${newEx.img.name}`);
+    const exerciseImg = await uploadImg(`${newEx.numero}-Ejercicio`, newEx.img, newEx.id_examen);
+    const solutionImg = await uploadImg(`${newEx.numero}-Solucion`, newEx.solucion, newEx.id_examen);
 
     const { error } = await supabase
       .from("Ejercicio")
@@ -48,8 +54,8 @@ export const DataProvider = ({ children }) => {
           numero: newEx.numero,
           respuesta: newEx.respuesta,
           id_examen: newEx.id_examen,
-          img: ImgBucket.publicUrl,
-          solucion: newEx.solucion,
+          img: exerciseImg,
+          solucion: solutionImg,
         },
       ])
       .select("*");

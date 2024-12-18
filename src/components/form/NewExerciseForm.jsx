@@ -35,6 +35,7 @@ export function NewExerciseForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formValues);
     createExercise(formValues);
   };
 
