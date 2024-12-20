@@ -15,8 +15,8 @@ export function ExerciseCard({ id, id_examen, numero, tema, fecha, examen, consi
           <div className="flex gap-3 mt-auto">
             {categorias.length > 0
               ? categorias.map((c) => (
-                  <div key={c.Categoria.id_categoria} className={`px-2 py-1 rounded-2xl font-medium text-slate-800 bg-yellow-400 text-xs`}>
-                    {c.Categoria.nombre}
+                  <div key={c.Tema.id_tema} className={`px-2 py-1 rounded-2xl font-medium text-slate-800 bg-yellow-400 text-xs`}>
+                    {c.Tema.nombre}
                   </div>
                 ))
               : null}

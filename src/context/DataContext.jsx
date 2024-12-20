@@ -64,7 +64,7 @@ export const DataProvider = ({ children }) => {
   };
 
   const getExercises = async (id) => {
-    let query = supabase.from("Ejercicio").select(` *, Examen(*), Ejercicio_Categoria ( Categoria (*) ) `);
+    let query = supabase.from("Ejercicio").select(` *, Examen(*), Ejercicio_Tema ( Tema(*) ) `);
 
     if (id) {
       query = query.eq("id_ejercicio", id);

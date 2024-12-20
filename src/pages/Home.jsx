@@ -39,7 +39,7 @@ export function Home() {
               tema={ex.Examen.tema}
               numero={ex.numero}
               consigna={renderContent(ex.consigna)}
-              categorias={ex.Ejercicio_Categoria}
+              categorias={ex.Ejercicio_Tema}
               img={ex.img}
             />
           ))
