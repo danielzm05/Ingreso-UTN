@@ -13,7 +13,7 @@ export function Input({
     <label htmlFor={name} className="w-full flex flex-col font-medium text-sm gap-1">
       {label}
       <input
-        className="px-3 text-sm bg-background border border-slate-800 rounded-md h-9"
+        className="px-3 text-sm bg-background border border-slate-800 rounded-md min-h-9"
         type={type}
         value={value}
         name={name}

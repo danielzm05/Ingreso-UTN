@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { useDataContext } from "../../context/DataContext";
-import { ImagePlus, Image } from "lucide-react";
 import { Input } from "./Input";
 import "//unpkg.com/mathlive";
 import "katex/dist/katex.min.css";
+import { Select } from "./Select";
+import { SelectMultiple } from "./MultipleOption";
 
 export function NewExerciseForm() {
-  const { tests, getTests, createExercise } = useDataContext();
+  const { tests, getTests, createExercise, getTopics, topics, formulas, getFormulas } = useDataContext();
   const [formula, setFormula] = useState("");
+  const [exTopics, setExTopics] = useState([]);
+  const [exFormulas, setExFormulas] = useState([]);
   const [formValues, setFormValues] = useState({
     descripcion: "",
     respuesta: "",
@@ -17,11 +20,9 @@ export function NewExerciseForm() {
 
   useEffect(() => {
     getTests();
+    getTopics();
+    getFormulas();
   }, []);
-
-  const handleFormula = (e) => {
-    setFormula(e.target.value);
-  };
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -35,39 +36,45 @@ export function NewExerciseForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValues);
-    createExercise(formValues);
+    createExercise(formValues, exTopics, exFormulas);
   };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-      <label htmlFor="id_examen" className="flex flex-col font-medium text-sm gap-1">
-        Examen:
-        <select
-          name="id_examen"
-          id="id_examen"
-          onChange={handleInput}
-          defaultValue=""
-          required
-          className="px-3 text-sm bg-background border border-slate-800 rounded-md h-9"
-        >
-          <option disabled value="">
-            Selecciona el examen del ejercicio
+      <Select label="Examen:" name="id_examen" id="id_examen" onChange={handleInput} defaultValue="">
+        <option disabled value="">
+          Selecciona el examen del ejercicio
+        </option>
+        {tests.map((t) => (
+          <option value={t.id_examen} key={t.id_examen}>
+            {t.fecha} {t.nombre} | Tema {t.tema}
           </option>
-          {tests.map((t) => (
-            <option value={t.id_examen} key={t.id_examen}>
-              {t.fecha} {t.nombre} | Tema {t.tema}
-            </option>
-          ))}
-        </select>
-      </label>
+        ))}
+      </Select>
 
       <Input label="Número" type="text" name="numero" onChange={handleInput} required={true} />
       <Input label="Consigna" type="text" name="consigna" onChange={handleInput} required={true} />
-      <Input label="Imagen consigna" type="file" name="img" onChange={handleImg} />
 
+      <SelectMultiple
+        value={(option) => option.id_tema}
+        label={(option) => option.nombre}
+        options={topics}
+        name="Tema"
+        onChange={(option) => setExTopics(option)}
+        placeholder="Selecciona el tema del ejercicio"
+      />
+
+      <Input label="Imagen consigna" type="file" name="img" onChange={handleImg} />
       <Input label="Solución" type="file" name="solucion" onChange={handleImg} />
 
+      <SelectMultiple
+        value={(option) => option.id_tema}
+        label={(option) => option.nombre}
+        options={formulas}
+        name="Formula"
+        onChange={(option) => setExFormulas(option)}
+        placeholder="Selecciona las formulas utilizadas"
+      />
       <Input label="Respuesta" type="text" name="respuesta" required={true} onChange={handleInput} />
 
       <p className="font-medium">
@@ -78,7 +85,7 @@ export function NewExerciseForm() {
       <math-field
         smart-mode
         name="consigna"
-        onInput={handleFormula}
+        onInput={(e) => setFormula(e.target.value)}
         value={formula}
         style={{ width: "100%", backgroundColor: "transparent", border: "1px solid #1e293b" }}
       ></math-field>
