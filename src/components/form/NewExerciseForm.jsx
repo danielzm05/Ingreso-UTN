@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDataContext } from "../../context/DataContext";
-import { Input } from "./Input";
+import { Input, TextArea } from "./Input";
 import "//unpkg.com/mathlive";
 import "katex/dist/katex.min.css";
 import { Select } from "./Select";
@@ -53,7 +53,7 @@ export function NewExerciseForm() {
       </Select>
 
       <Input label="Número" type="text" name="numero" onChange={handleInput} required={true} />
-      <Input label="Consigna" type="text" name="consigna" onChange={handleInput} required={true} />
+      <TextArea label="Consigna" type="text" name="consigna" onChange={handleInput} required={true}></TextArea>
 
       <SelectMultiple
         value={(option) => option.id_tema}
@@ -68,7 +68,7 @@ export function NewExerciseForm() {
       <Input label="Solución" type="file" name="solucion" onChange={handleImg} />
 
       <SelectMultiple
-        value={(option) => option.id_tema}
+        value={(option) => option.id_formula}
         label={(option) => option.nombre}
         options={formulas}
         name="Formula"

@@ -26,3 +26,17 @@ export function Input({
     </label>
   );
 }
+
+export function TextArea({ label, name, onChange, required }) {
+  return (
+    <label htmlFor={name} className="w-full flex flex-col font-medium text-sm gap-1">
+      {label}
+      <textarea
+        className="px-3 text-sm bg-background border border-slate-800 rounded-md min-h-40"
+        name={name}
+        onChange={onChange}
+        required={required}
+      ></textarea>
+    </label>
+  );
+}
