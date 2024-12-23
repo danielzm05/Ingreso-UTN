@@ -17,10 +17,11 @@ export function NewTestForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     createTest(formValues);
+    document.querySelector("#test-form").reset();
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+    <form id="test-form" onSubmit={handleSubmit} className="flex flex-col gap-3">
       <Input label="Nombre" type="text" name="nombre" required={true} onChange={handleInput} />
 
       <Input label="Descripción" type="text" name="descripcion" onChange={handleInput} />

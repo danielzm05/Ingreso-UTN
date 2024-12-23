@@ -1,7 +1,7 @@
 import { Check, NotebookTextIcon, LightbulbIcon } from "lucide-react";
 import { useState } from "react";
 
-export function ExercisePageCard({ respuesta, consigna, img, numero, fecha, nombre, solucion }) {
+export function ExercisePageCard({ respuesta, consigna, img, numero, fecha, nombre, solucion, formulas }) {
   const [done, setDone] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
   return (
@@ -52,13 +52,16 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha, nomb
         <section id="solution" className="py-5 flex justify-between flex-wrap gap-5 border-t border-slate-800">
           <img src={solucion} alt={consigna} className="w-full max-w-4xl rounded-xl" />
           <section className=" text-gray-500 ">
-            <h2 className="flex items-center gap-1 text-lg font-semibold ">
+            <h2 className="flex items-center gap-1 text-md font-semibold mb-2">
               <LightbulbIcon size={20} /> Formulas Utilizadas:
             </h2>
-            <ul className="flex flex-col gap-1  list-disc ml-11 py-2 ">
-              <li>Formula de Gauss</li>
-              <li>Formula de Thales</li>
-              <li>Formula de Gauss</li>
+            <ul className="flex flex-col gap-1  list-none">
+              <li className="hover:bg-slate-800 hover:text-white rounded-lg px-2 transition duration-300 ease-in-out">
+                <a href="#" target="_blank" className="flex flex-col text-sm">
+                  <span className="font-semibold">Teorema del Coseno</span>
+                  <span>a+b=c</span>
+                </a>
+              </li>
             </ul>
           </section>
         </section>

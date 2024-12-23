@@ -37,10 +37,11 @@ export function NewExerciseForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     createExercise(formValues, exTopics, exFormulas);
+    document.querySelector("#exercise-form").reset();
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+    <form id="exercise-form" onSubmit={handleSubmit} className="flex flex-col gap-3">
       <Select label="Examen:" name="id_examen" id="id_examen" onChange={handleInput} defaultValue="">
         <option disabled value="">
           Selecciona el examen del ejercicio
