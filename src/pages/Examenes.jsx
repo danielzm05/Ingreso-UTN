@@ -5,17 +5,14 @@ import { useEffect, useState } from "react";
 
 export function Examenes() {
   const { tests, getTests } = useDataContext();
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(" ");
 
   useEffect(() => {
     getTests();
+    console.log(tests);
   }, []);
 
-  const filteredTests = tests.filter(
-    (t) =>
-      t.nombre.toLowerCase().includes(searchTerm.toLowerCase()) || t.fecha.toString().includes(searchTerm) || t.tema.toString().includes(searchTerm)
-  );
-
+  const filteredTests = tests.filter((e) => e.nombre.toLowerCase().includes(searchTerm.toLowerCase()) || e.fecha?.toString().includes(searchTerm));
   return (
     <main className="flex flex-col gap-3 px-10 py-11">
       <SearchBar placeholder="Buscar examen..." onSearch={(query) => setSearchTerm(query)} />

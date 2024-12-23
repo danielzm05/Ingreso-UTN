@@ -78,7 +78,7 @@ export function NewExerciseForm() {
       />
       <Input label="Respuesta" type="text" name="respuesta" required={true} onChange={handleInput} />
 
-      <p className="font-medium">
+      <p className="font-medium italic">
         {"<math>"}
         {formula}
         {"</math>"}
@@ -88,9 +88,9 @@ export function NewExerciseForm() {
         name="consigna"
         onInput={(e) => setFormula(e.target.value)}
         value={formula}
-        style={{ width: "100%", backgroundColor: "transparent", border: "1px solid #1e293b" }}
+        style={{ width: "100%", backgroundColor: "transparent", border: "1px solid #263640" }}
       ></math-field>
-      <input type="submit" value="Crear" className="p-2 rounded-xl font-semibold w-fit bg-yellow-500 text-slate-900 cursor-pointer" />
+      <input type="submit" value="Crear" className="p-2 rounded-xl font-semibold w-fit bg-primary text-card cursor-pointer" />
     </form>
   );
 }

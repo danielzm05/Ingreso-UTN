@@ -4,7 +4,12 @@ import { Radical, FileText } from "lucide-react";
 export function Header() {
   return (
     <header className="p-5 flex">
-      <h1 className="text-lg font-semibold text-nowrap">ⵥ INGRESO UTN</h1>
+      <NavLink to="/">
+        <h1 className="text-lg font-semibold text-nowrap select-none">
+          <span className="text-primary">ⵥ</span> INGRESO UTN
+        </h1>
+      </NavLink>
+
       <nav className="w-full flex justify-center items-center">
         <ul className="w-full flex justify-center items-center gap-5 text-gray-500 font-medium">
           <NavLink to="/">

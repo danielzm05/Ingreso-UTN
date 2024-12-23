@@ -13,7 +13,7 @@ export function Input({
     <label htmlFor={name} className="w-full flex flex-col font-medium text-sm gap-1">
       {label}
       <input
-        className="px-3 text-sm bg-background border border-slate-800 rounded-md min-h-9"
+        className="px-3 text-sm bg-transparent border border-border1 rounded-md min-h-9 focus:outline-none  focus:outline-primary focus:border-none"
         type={type}
         value={value}
         name={name}
@@ -29,10 +29,10 @@ export function Input({
 
 export function TextArea({ label, name, onChange, required }) {
   return (
-    <label htmlFor={name} className="w-full flex flex-col font-medium text-sm gap-1">
+    <label htmlFor={name} className="w-full flex flex-col font-medium text-sm gap-1 focus:outline-none  focus:outline-primary focus:border-none">
       {label}
       <textarea
-        className="px-3 text-sm bg-background border border-slate-800 rounded-md min-h-40"
+        className="px-3 text-sm bg-transparent border border-border1 rounded-md min-h-40"
         name={name}
         onChange={onChange}
         required={required}

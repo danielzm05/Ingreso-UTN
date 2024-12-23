@@ -28,7 +28,7 @@ export function NewTestForm() {
       <Input label="Tema" type="number" name="tema" onChange={handleInput} />
       <Input label="Año" type="number" name="fecha" onChange={handleInput} />
 
-      <input type="submit" value="Crear" className="p-2 rounded-xl font-semibold w-fit bg-yellow-500 text-slate-900 cursor-pointer" />
+      <input type="submit" value="Crear" className="p-2 rounded-xl font-semibold w-fit bg-primary text-card cursor-pointer" />
     </form>
   );
 }

@@ -25,7 +25,7 @@ export function LoginForm() {
       <Input label="Email" type="email" name="email" onChange={handleInputChange} placeholder="nombre@gmail.com" required={true} />
 
       <Input label="Contraseña" type="password" name="password" onChange={handleInputChange} required={true} minLength={6} autoComplete="off" />
-      <input type="submit" value="Ingresar" className="p-2 mt-5 rounded-xl font-semibold w-full bg-white text-background cursor-pointer" />
+      <input type="submit" value="Ingresar" className="p-2 mt-5 rounded-xl font-semibold w-full bg-primary text-background cursor-pointer" />
     </form>
   );
 }

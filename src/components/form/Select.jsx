@@ -7,7 +7,7 @@ export function Select({ label, name, onChange, defaultValue = "", required = tr
         onChange={onChange}
         defaultValue={defaultValue}
         required={required}
-        className="px-3 text-sm bg-background border border-slate-800 rounded-md h-9"
+        className="px-3 text-sm bg-card border border-border1 rounded-md h-9 focus:outline-none  focus:outline-primary focus:border-none"
       >
         {children}
       </select>

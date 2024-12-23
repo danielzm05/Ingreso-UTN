@@ -9,7 +9,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #020817;
+  background-color: #141e22;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -30,4 +30,17 @@ body {
 
 #root {
   min-height: 100vh;
+}
+
+math-field::part(menu-toggle),
+math-field::part(virtual-keyboard-toggle) {
+  color: #fff;
+}
+
+math-field {
+  border-radius: 0.375rem;
+}
+
+math-field:focus-within {
+  outline: 2px solid #39d97c;
 }

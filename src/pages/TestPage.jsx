@@ -26,8 +26,8 @@ export function TestPage() {
 
   return (
     tests.length > 0 && (
-      <article className="m-10 flex flex-col py-3 px-5 gap-1 border border-slate-800 rounded-xl">
-        <header className="py-3">
+      <article className="m-10 flex flex-col py-3 px-5 gap-1 bg-card rounded-xl">
+        <header className="pb-6 pt-6">
           <h1 className="max-w-full text-3xl text-start font-bold">
             {tests[0].nombre} {tests[0].fecha}
           </h1>
