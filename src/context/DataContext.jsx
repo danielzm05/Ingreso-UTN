@@ -1,5 +1,6 @@
 import { useContext, createContext, useState } from "react";
 import { supabase } from "../backend/client";
+import toast from "react-hot-toast";
 
 const DataContext = createContext();
 
@@ -42,6 +43,7 @@ export const DataProvider = ({ children }) => {
       .select("*");
 
     if (error) throw error;
+    toast.success("Examen creado con éxito");
   };
 
   const uploadImg = async (nombre, img, examenId) => {
@@ -86,6 +88,7 @@ export const DataProvider = ({ children }) => {
     const formulas = exFormulas?.map((f) => ({ id_formula: f.id_formula, id_ejercicio: newEx[0].id_ejercicio }));
     addExtraExercise("Ejercicio_Tema", topics);
     addExtraExercise("Ejercicio_Formula", formulas);
+    toast.success("Ejercicio creado con éxito");
   };
 
   const getExercises = async (id) => {

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { Radical, FileText } from "lucide-react";
+import { Radical, FileText, ChartColumn } from "lucide-react";
 
 export function Header() {
   return (
@@ -22,6 +22,12 @@ export function Header() {
             <li className="flex items-center gap-1 outline-none">
               <FileText size={18} />
               Examenes
+            </li>
+          </NavLink>
+          <NavLink to="/dashboard">
+            <li className="flex items-center gap-1 outline-none">
+              <ChartColumn size={18} />
+              Dashboard
             </li>
           </NavLink>
         </ul>

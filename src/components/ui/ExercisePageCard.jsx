@@ -27,14 +27,14 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha, nomb
                 <input
                   onChange={(e) => setDone(e.target.checked)}
                   type="checkbox"
-                  className="peer h-4 w-4 cursor-pointer appearance-none rounded-full bg-transparent border-2 border-gray-500 checked:bg-green-600 checked:border-green-600 transition ease-in duration-300"
+                  className="peer h-4 w-4 cursor-pointer appearance-none rounded-full bg-transparent border-2 border-gray-500 checked:bg-primary checked:border-primary transition ease-in duration-300"
                   id="check-2"
                 />
                 <span className="absolute text-background opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                   <Check size={14} strokeWidth={3} />
                 </span>
               </label>
-              <label className={`cursor-pointer ${done ? "text-green-500" : "text-gray-500"} transition ease-in duration-300`} htmlFor="check-2">
+              <label className={`cursor-pointer ${done ? "text-primary" : "text-gray-500"} transition ease-in duration-300`} htmlFor="check-2">
                 {done ? "Completado" : "Incompleto"}
               </label>
             </div>
