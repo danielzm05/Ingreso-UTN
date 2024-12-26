@@ -13,7 +13,7 @@ export function Examenes() {
 
   const filteredTests = tests.filter((e) => e.nombre.toLowerCase().includes(searchTerm.toLowerCase()) || e.fecha?.toString().includes(searchTerm));
   return (
-    <main className="flex flex-col gap-3 px-10 py-11">
+    <main className="flex flex-col gap-3 p-3 sm:p-10">
       <SearchBar placeholder="Buscar examen..." onSearch={(query) => setSearchTerm(query)} />
       {filteredTests.length > 0 ? (
         filteredTests.map((t) => (

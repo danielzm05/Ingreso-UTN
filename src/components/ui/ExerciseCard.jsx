@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 export function ExerciseCard({ id, id_examen, numero, tema, fecha, examen, consigna, img, categorias }) {
   return (
-    <Link to={`/Examenes/${id_examen}/ejercicio/${id}`}>
+    <Link to={`/examenes/${id_examen}/ejercicio/${id}`}>
       <article className="h-36 flex justify-between p-3 gap-3 bg-card rounded-xl cursor-pointer hover:bg-hover transition duration-300 ease-in-out">
         {img ? <img className="rounded bg-white aspect-square w-28 h-full object-contain" src={img} alt={consigna} /> : null}
 

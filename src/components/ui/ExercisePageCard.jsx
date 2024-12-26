@@ -7,7 +7,7 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "",
   const [showSolution, setShowSolution] = useState(false);
 
   return (
-    <article className="m-10 flex flex-col p-5 gap-3 border border-slate-800 rounded-xl">
+    <article className="m-3 sm:m-10 flex flex-col p-5 gap-3 border border-slate-800 rounded-xl">
       <section className="min-w-full flex flex-col gap-2 items-start justify-start">
         <header>
           <p className="text-gray-500 font-semibold">

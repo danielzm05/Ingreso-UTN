@@ -26,7 +26,7 @@ export function TestPage() {
 
   return (
     tests.length > 0 && (
-      <article className="m-10 flex flex-col py-3 px-5 gap-1 bg-card rounded-xl">
+      <article className="m-3 sm:m-10 flex flex-col py-3 px-5 gap-1 bg-card rounded-xl">
         <header className="pb-6 pt-6">
           <h1 className="max-w-full text-3xl text-start font-bold">
             {tests[0].nombre} {tests[0].fecha}
@@ -38,7 +38,13 @@ export function TestPage() {
 
         <section className="flex flex-col">
           {tests[0].Ejercicio.map((ex) => (
-            <ExerciseTestCard key={ex.id_ejercicio} id={ex.id_ejercicio} numero={ex.numero} consigna={renderContent(ex.consigna)} />
+            <ExerciseTestCard
+              key={ex.id_ejercicio}
+              id={ex.id_ejercicio}
+              numero={ex.numero}
+              id_examen={id_examen}
+              consigna={renderContent(ex.consigna)}
+            />
           ))}
         </section>
       </article>

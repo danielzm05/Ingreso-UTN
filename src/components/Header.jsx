@@ -3,7 +3,7 @@ import { Radical, FileText, ChartColumn } from "lucide-react";
 
 export function Header() {
   return (
-    <header className="p-5 flex">
+    <header className="py-5 sm:px-5 px-2 flex">
       <NavLink to="/">
         <h1 className="text-lg font-semibold text-nowrap select-none">
           <span className="text-primary">ⵥ</span> INGRESO UTN
@@ -11,7 +11,7 @@ export function Header() {
       </NavLink>
 
       <nav className="w-full flex justify-center items-center">
-        <ul className="w-full flex justify-center items-center gap-5 text-gray-500 font-medium">
+        <ul className="w-full flex justify-center items-center gap-5 text-gray-500 font-medium flex-wrap">
           <NavLink to="/">
             <li className=" flex items-center gap-1 outline-none">
               <Radical size={18} />

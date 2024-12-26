@@ -26,7 +26,7 @@ export function Home() {
   const filteredExercises = exercises.filter((e) => e.consigna.toLowerCase().includes(searchTerm.toLowerCase()));
   return (
     <>
-      <main className="flex flex-col gap-3 p-10">
+      <main className="flex flex-col gap-3 p-3 sm:p-10">
         <SearchBar placeholder="Buscar ejercicio..." onSearch={(query) => setSearchTerm(query)} />
         {filteredExercises.length > 0 ? (
           filteredExercises.map((ex) => (
