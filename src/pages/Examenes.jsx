@@ -9,7 +9,6 @@ export function Examenes() {
 
   useEffect(() => {
     getTests();
-    console.log(tests);
   }, []);
 
   const filteredTests = tests.filter((e) => e.nombre.toLowerCase().includes(searchTerm.toLowerCase()) || e.fecha?.toString().includes(searchTerm));

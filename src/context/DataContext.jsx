@@ -1,6 +1,7 @@
 import { useContext, createContext, useState } from "react";
 import { supabase } from "../backend/client";
 import toast from "react-hot-toast";
+import { useAuthContext } from "./AuthContext";
 
 const DataContext = createContext();
 
@@ -9,6 +10,7 @@ export const useDataContext = () => {
 };
 
 export const DataProvider = ({ children }) => {
+  const { user } = useAuthContext();
   const [exercises, setExercises] = useState([]);
   const [tests, setTests] = useState([]);
   const [topics, setTopics] = useState([]);
@@ -64,6 +66,23 @@ export const DataProvider = ({ children }) => {
     if (error) throw error;
   };
 
+  const checkExercise = async (checked, id_ejercicio, id_usuario) => {
+    if (!user?.aud) {
+      toast.error("Inicia sesión para marcar como completado");
+      return;
+    }
+
+    if (checked) {
+      const { data, error } = await supabase.from("Ejercicio_Completado").insert([{ id_ejercicio: id_ejercicio, id_usuario: id_usuario }]);
+
+      if (error) throw error;
+      toast.success("Nuevo ejercicio completado!");
+    } else {
+      const { error } = await supabase.from("Ejercicio_Completado").delete().eq("id_ejercicio", id_ejercicio).eq("id_usuario", id_usuario);
+      if (error) throw error;
+    }
+    getExercises(id_ejercicio);
+  };
   const createExercise = async (ex, exTopics, exFormulas) => {
     const exerciseImg = await uploadImg(`${ex.numero}-Ejercicio`, ex.img, ex.id_examen);
     const solutionImg = await uploadImg(`${ex.numero}-Solucion`, ex.solucion, ex.id_examen);
@@ -92,7 +111,9 @@ export const DataProvider = ({ children }) => {
   };
 
   const getExercises = async (id) => {
-    let query = supabase.from("Ejercicio").select(` *, Examen(*), Ejercicio_Tema ( Tema(*) ), Ejercicio_Formula ( Formula(*) ) `);
+    let query = supabase
+      .from("Ejercicio")
+      .select(` *, Examen(*), Ejercicio_Tema ( Tema(*) ), Ejercicio_Formula ( Formula(*) ), Ejercicio_Completado(*)`);
 
     if (id) {
       query = query.eq("id_ejercicio", id);
@@ -101,12 +122,13 @@ export const DataProvider = ({ children }) => {
     const { data, error } = await query;
     if (error) throw error;
 
-    console.log(data);
     setExercises(data);
   };
 
   return (
-    <DataContext.Provider value={{ exercises, tests, formulas, topics, getTests, createTest, getExercises, createExercise, getFormulas, getTopics }}>
+    <DataContext.Provider
+      value={{ exercises, tests, formulas, topics, getTests, createTest, getExercises, createExercise, getFormulas, getTopics, checkExercise }}
+    >
       {children}
     </DataContext.Provider>
   );

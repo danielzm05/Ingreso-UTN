@@ -1,6 +1,7 @@
 import { useEffect, useState, createContext, useContext } from "react";
 import { supabase } from "../backend/client";
 import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
 
 export const AuthContext = createContext(null);
 
@@ -40,8 +41,10 @@ export const AuthProvider = ({ children }) => {
       password: password,
     });
 
-    if (error) throw error;
-    navigate("/");
+    if (error) {
+      toast.error("Usuario o contraseña incorrectas");
+    }
+    navigate("/dashboard");
   };
 
   const getUserInfo = async (userId = user.id) => {

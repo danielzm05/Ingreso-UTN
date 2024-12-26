@@ -1,15 +1,17 @@
 import { Check, NotebookTextIcon, LightbulbIcon } from "lucide-react";
 import { useState } from "react";
+import { useDataContext } from "../../context/DataContext";
 
-export function ExercisePageCard({ respuesta, consigna, img, numero, fecha, nombre, solucion, formulas }) {
-  const [done, setDone] = useState(false);
+export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "", nombre, solucion, formulas, hecho, onChange }) {
+  const { checkExercise } = useDataContext();
   const [showSolution, setShowSolution] = useState(false);
+
   return (
     <article className="m-10 flex flex-col p-5 gap-3 border border-slate-800 rounded-xl">
       <section className="min-w-full flex flex-col gap-2 items-start justify-start">
         <header>
           <p className="text-gray-500 font-semibold">
-            {fecha} {nombre} {numero ? `Ejercicio: ${numero}` : null}
+            {fecha ? fecha : null} {nombre} {numero ? `Ejercicio: ${numero}` : null}
           </p>
         </header>
         <h1 className="max-w-full text-lg text-start font-semibold">{consigna}</h1>
@@ -25,7 +27,8 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha, nomb
             <div className="flex items-center gap-1  ">
               <label className="flex items-center cursor-pointer relative" htmlFor="check-2">
                 <input
-                  onChange={(e) => setDone(e.target.checked)}
+                  onChange={onChange}
+                  checked={hecho}
                   type="checkbox"
                   className="peer h-4 w-4 cursor-pointer appearance-none rounded-full bg-transparent border-2 border-gray-500 checked:bg-primary checked:border-primary transition ease-in duration-300"
                   id="check-2"
@@ -34,8 +37,8 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha, nomb
                   <Check size={14} strokeWidth={3} />
                 </span>
               </label>
-              <label className={`cursor-pointer ${done ? "text-primary" : "text-gray-500"} transition ease-in duration-300`} htmlFor="check-2">
-                {done ? "Completado" : "Incompleto"}
+              <label className={`cursor-pointer ${hecho ? "text-primary" : "text-gray-500"} transition ease-in duration-300`} htmlFor="check-2">
+                {hecho ? "Completado" : "Incompleto"}
               </label>
             </div>
 
