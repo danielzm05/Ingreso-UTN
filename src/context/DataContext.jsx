@@ -12,6 +12,7 @@ export const useDataContext = () => {
 export const DataProvider = ({ children }) => {
   const { user } = useAuthContext();
   const [exercises, setExercises] = useState([]);
+  const [doneExercises, setDoneExercises] = useState([]);
   const [tests, setTests] = useState([]);
   const [topics, setTopics] = useState([]);
   const [formulas, setFormulas] = useState([]);
@@ -38,11 +39,17 @@ export const DataProvider = ({ children }) => {
     setFormulas(data);
   };
 
+  const getDoneExercises = async () => {
+    const { data, error } = await supabase.from("Ejercicio_Completado").select("*, Ejercicio(*, Ejercicio_Tema ( Tema(*) )) ");
+    if (error) throw error;
+    console.log(data);
+    setDoneExercises(data);
+  };
+
   const createTest = async (newTest) => {
     const { error } = await supabase
       .from("Examen")
-      .insert([{ nombre: newTest.nombre, descripcion: newTest.descripcion, tema: newTest.tema, fecha: newTest.fecha }])
-      .select("*");
+      .insert([{ nombre: newTest.nombre, descripcion: newTest.descripcion, tema: newTest.tema, fecha: newTest.fecha, archivo: newTest.archivo }]);
 
     if (error) throw error;
     toast.success("Examen creado con éxito");
@@ -127,7 +134,21 @@ export const DataProvider = ({ children }) => {
 
   return (
     <DataContext.Provider
-      value={{ exercises, tests, formulas, topics, getTests, createTest, getExercises, createExercise, getFormulas, getTopics, checkExercise }}
+      value={{
+        exercises,
+        tests,
+        formulas,
+        topics,
+        doneExercises,
+        getTests,
+        createTest,
+        getExercises,
+        createExercise,
+        getFormulas,
+        getTopics,
+        checkExercise,
+        getDoneExercises,
+      }}
     >
       {children}
     </DataContext.Provider>

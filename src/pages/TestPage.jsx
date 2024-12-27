@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import { ExerciseTestCard } from "../components/ui/ExerciseTestCard";
 import { useDataContext } from "../context/DataContext";
+import { FileTextIcon } from "lucide-react";
 import parse from "html-react-parser";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
@@ -12,7 +13,6 @@ export function TestPage() {
 
   useEffect(() => {
     getTests(id_examen);
-    console.log(tests);
   }, []);
 
   const renderContent = (htmlString) =>
@@ -37,6 +37,15 @@ export function TestPage() {
         </header>
 
         <section className="flex flex-col">
+          <div className=" pb-2 flex justify-between items-center text-text2 font-semibold ">
+            <h3>Ejercicios:</h3>
+            {tests[0].archivo ? (
+              <a href={tests[0].archivo} target="_blank" title="Ver PDF" className="flex gap-1 items-center">
+                <FileTextIcon size={18} />
+                PDF
+              </a>
+            ) : null}
+          </div>
           {tests[0].Ejercicio.map((ex) => (
             <ExerciseTestCard
               key={ex.id_ejercicio}

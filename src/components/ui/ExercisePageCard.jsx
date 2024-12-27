@@ -1,8 +1,9 @@
 import { Check, NotebookTextIcon, LightbulbIcon } from "lucide-react";
 import { useState } from "react";
 import { useDataContext } from "../../context/DataContext";
+import { Link } from "react-router";
 
-export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "", nombre, solucion, formulas, hecho, onChange }) {
+export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "", nombre, solucion, formulas, id_examen, hecho, onChange }) {
   const { checkExercise } = useDataContext();
   const [showSolution, setShowSolution] = useState(false);
 
@@ -10,9 +11,11 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "",
     <article className="m-3 sm:m-10 flex flex-col p-5 gap-3 border border-slate-800 rounded-xl">
       <section className="min-w-full flex flex-col gap-2 items-start justify-start">
         <header>
-          <p className="text-gray-500 font-semibold">
-            {fecha ? fecha : null} {nombre} {numero ? `Ejercicio: ${numero}` : null}
-          </p>
+          <Link to={`/examenes/${id_examen}`}>
+            <p className="text-gray-500 font-semibold no-underline hover:underline">
+              {fecha ? fecha : null} {nombre} {numero ? `Ejercicio: ${numero}` : null}
+            </p>
+          </Link>
         </header>
         <h1 className="max-w-full text-lg text-start font-semibold">{consigna}</h1>
         {img && (
@@ -43,7 +46,7 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "",
             </div>
 
             {solucion && (
-              <a href="#solution" title="Ver solución" onClick={() => setShowSolution(!showSolution)} className="grid place-content-center">
+              <a href="#solution" title="Ver Solución" onClick={() => setShowSolution(!showSolution)} className="grid place-content-center">
                 <NotebookTextIcon size={18} />
               </a>
             )}
