@@ -26,7 +26,6 @@ export function ExercisePage() {
 
   const changeDone = (e) => {
     let checked = e.target.checked;
-    console.log(checked);
     checkExercise(checked, exercises[0]?.id_ejercicio, user?.id);
   };
 
