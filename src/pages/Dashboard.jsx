@@ -23,13 +23,13 @@ export function Dashboard() {
           <h2 className="text-md font-semibold">Resumen Semanal</h2>
           <WeekSummary exercises={doneExercises} />
         </article>
-        <StatCard title="Ejercicios Completados de Hoy" stat={100}>
+        <StatCard title="Ejercicios Completados de Hoy" stat={100} className={"border-l-4 border-primary"}>
           <Flame size={18} />
         </StatCard>
-        <StatCard title="Ejercicios completados" stat={doneExercises?.length}>
+        <StatCard title="Ejercicios completados" stat={doneExercises?.length} className={"border-l-4 border-primary"}>
           <CircleCheckBig size={18} />
         </StatCard>
-        <StatCard title="Examenes Completados" stat={100}>
+        <StatCard title="Examenes Completados" stat={100} className={"border-l-4 border-primary"}>
           <FileBadge size={18} />
         </StatCard>
       </section>

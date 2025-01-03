@@ -17,7 +17,6 @@ export function TestPage() {
     getTests(id_examen);
   }, []);
 
-  console.log(tests);
   const renderContent = (htmlString) =>
     parse(htmlString, {
       replace: (domNode) => {

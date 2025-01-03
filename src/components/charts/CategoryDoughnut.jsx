@@ -24,7 +24,7 @@ export function CategoryDoughnut({ exercises }) {
 
   const options = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     plugins: {
       legend: {
         display: true,
@@ -56,7 +56,7 @@ export function CategoryDoughnut({ exercises }) {
         intersect: true,
       },
     },
-    cutout: 60,
+    cutout: 50,
   };
 
   return <Doughnut data={data} options={options} />;
