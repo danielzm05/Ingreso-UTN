@@ -56,7 +56,7 @@ export function CategoryDoughnut({ exercises }) {
         intersect: true,
       },
     },
-    cutout: 70,
+    cutout: 60,
   };
 
   return <Doughnut data={data} options={options} />;
