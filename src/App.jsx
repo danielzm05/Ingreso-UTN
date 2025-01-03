@@ -5,7 +5,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { SignupPage } from "./pages/SignUpPage";
 import { AdminPage } from "./pages/AdminPage";
 import { ExercisePage } from "./pages/ExercisePage";
-import { Dashboard } from "./pages/DashBoard";
+import { Dashboard } from "./pages/Dashboard";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useAuthContext } from "./context/AuthContext";
 import { Route, Routes } from "react-router";

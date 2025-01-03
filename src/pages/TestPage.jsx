@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import { ExerciseTestCard } from "../components/ui/ExerciseTestCard";
 import { useDataContext } from "../context/DataContext";
+import { useAuthContext } from "../context/AuthContext";
 import { FileTextIcon } from "lucide-react";
 import parse from "html-react-parser";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 
 export function TestPage() {
+  const { user } = useAuthContext();
   const { tests, getTests } = useDataContext();
   const { id_examen } = useParams();
 
@@ -15,6 +17,7 @@ export function TestPage() {
     getTests(id_examen);
   }, []);
 
+  console.log(tests);
   const renderContent = (htmlString) =>
     parse(htmlString, {
       replace: (domNode) => {
@@ -53,6 +56,7 @@ export function TestPage() {
               numero={ex.numero}
               id_examen={id_examen}
               consigna={renderContent(ex.consigna)}
+              hecho={ex.Ejercicio_Completado.some((e) => e.id_usuario === user?.id && e.id_ejercicio === ex.id_ejercicio)}
             />
           ))}
         </section>

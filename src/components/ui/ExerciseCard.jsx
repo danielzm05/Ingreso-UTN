@@ -1,12 +1,18 @@
 import { Link } from "react-router";
-export function ExerciseCard({ id, id_examen, numero, tema, fecha, examen, consigna, img, categorias }) {
+import { Check } from "lucide-react";
+export function ExerciseCard({ id, id_examen, numero, tema, fecha, examen, consigna, img, categorias, hecho }) {
   return (
     <Link to={`/examenes/${id_examen}/ejercicio/${id}`}>
       <article className="h-36 flex justify-between p-3 gap-3 bg-card rounded-xl cursor-pointer hover:bg-hover transition duration-300 ease-in-out">
         {img ? <img className="rounded bg-white aspect-square w-28 h-full object-contain" src={img} alt={consigna} /> : null}
 
         <section className="w-full flex flex-col gap-1 items-start justify-start">
-          <header>
+          <header className="flex items-center gap-2">
+            {hecho && (
+              <span className="bg-primary text-background rounded-full grid place-content-center h-4 w-4">
+                <Check size={14} strokeWidth={3} />
+              </span>
+            )}
             <p className="text-gray-500 text-sm font-semibold">
               {examen} {fecha} {tema ? `| Tema ${tema}` : null}
             </p>

@@ -4,7 +4,6 @@ import { useDataContext } from "../../context/DataContext";
 import { Link } from "react-router";
 
 export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "", nombre, solucion, formulas, id_examen, hecho, onChange }) {
-  const { checkExercise } = useDataContext();
   const [showSolution, setShowSolution] = useState(false);
 
   return (

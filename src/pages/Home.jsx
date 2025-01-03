@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { ExerciseCard } from "../components/ui/ExerciseCard";
 import { useDataContext } from "../context/DataContext";
+import { useAuthContext } from "../context/AuthContext";
 import parse from "html-react-parser";
 import { InlineMath } from "react-katex";
 import { SearchBar } from "../components/ui/SearchBar";
 import "katex/dist/katex.min.css";
 
 export function Home() {
+  const { user } = useAuthContext();
   const { exercises, getExercises } = useDataContext();
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -41,6 +43,7 @@ export function Home() {
               consigna={renderContent(ex.consigna)}
               categorias={ex.Ejercicio_Tema}
               img={ex.img}
+              hecho={ex.Ejercicio_Completado.some((e) => e.id_usuario === user.id && e.id_ejercicio === ex.id_ejercicio)}
             />
           ))
         ) : (

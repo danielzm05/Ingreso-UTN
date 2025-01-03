@@ -18,7 +18,10 @@ export const DataProvider = ({ children }) => {
   const [formulas, setFormulas] = useState([]);
 
   const getTests = async (id) => {
-    let query = supabase.from("Examen").select("*, Ejercicio(*)").order("numero", { referencedTable: "Ejercicio", ascending: true });
+    let query = supabase
+      .from("Examen")
+      .select("*, Ejercicio(*, Ejercicio_Completado(*))")
+      .order("numero", { referencedTable: "Ejercicio", ascending: true });
     if (id) {
       query = query.eq("id_examen", id);
     }
