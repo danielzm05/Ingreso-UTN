@@ -1,10 +1,21 @@
 import { Check, NotebookTextIcon, LightbulbIcon } from "lucide-react";
 import { useState } from "react";
-import { useDataContext } from "../../context/DataContext";
 import { Link } from "react-router";
+import parse from "html-react-parser";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 
 export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "", nombre, solucion, formulas, id_examen, hecho, onChange }) {
   const [showSolution, setShowSolution] = useState(false);
+
+  const renderContent = (htmlString) =>
+    parse(htmlString, {
+      replace: (domNode) => {
+        if (domNode.name === "math") {
+          return <InlineMath math={domNode.children[0].data} />;
+        }
+      },
+    });
 
   return (
     <article className="m-3 sm:m-10 flex flex-col p-5 gap-3 border border-slate-800 rounded-xl">
@@ -16,7 +27,7 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "",
             </p>
           </Link>
         </header>
-        <h1 className="max-w-full text-lg text-start font-semibold">{consigna}</h1>
+        <h1 className="max-w-full text-lg text-start font-semibold">{renderContent(consigna ? consigna : "")}</h1>
         {img && (
           <a href={img} target="_blank">
             <img src={img} alt={consigna} className="mt-3 border border-slate-800 rounded-xl max-h-80 object-cover" />
@@ -24,7 +35,7 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "",
         )}
 
         <footer className="min-w-full flex justify-between mt-6">
-          <p className="text-end font-semibold">RTA: {respuesta}</p>
+          <p className="text-end font-semibold">RTA: {renderContent(respuesta ? respuesta : "")}</p>
           <div className="flex gap-4 text-gray-500 font-medium">
             <div className="flex items-center gap-1  ">
               <label className="flex items-center cursor-pointer relative" htmlFor="check-2">

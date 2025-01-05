@@ -19,7 +19,7 @@ export function WeekSummary({ exercises }) {
       {
         label: "Ejercicios",
         data: Object.values(conteo).slice(-7),
-        backgroundColor: "#8D5DE7",
+        backgroundColor: "#3CDC7E",
         borderRadius: 3,
       },
     ],

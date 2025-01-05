@@ -1,6 +1,19 @@
 import { Link } from "react-router";
 import { Check } from "lucide-react";
-export function ExerciseCard({ id, id_examen, numero, tema, fecha, examen, consigna, img, categorias, hecho }) {
+import parse from "html-react-parser";
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
+
+export function ExerciseCard({ id, id_examen, numero, tema, fecha, examen, consigna, img, categorias = [], hecho }) {
+  const renderContent = (htmlString) =>
+    parse(htmlString, {
+      replace: (domNode) => {
+        if (domNode.name === "math") {
+          return <InlineMath math={domNode.children[0].data} />;
+        }
+      },
+    });
+
   return (
     <Link to={`/examenes/${id_examen}/ejercicio/${id}`}>
       <article className="h-36 flex justify-between p-3 gap-3 bg-card rounded-xl cursor-pointer hover:bg-hover transition duration-300 ease-in-out">
@@ -17,7 +30,9 @@ export function ExerciseCard({ id, id_examen, numero, tema, fecha, examen, consi
               {examen} {fecha} {tema ? `| Tema ${tema}` : null}
             </p>
           </header>
-          <h1 className="max-h-12 max-w-full text-base text-text1 text-start font-semibold text-ellipsis overflow-hidden">{consigna}</h1>
+          <h1 className="max-h-12 max-w-full text-base text-text1 text-start font-semibold text-ellipsis overflow-hidden">
+            {renderContent(consigna ? consigna : "")}
+          </h1>
           <div className="flex gap-3 mt-auto">
             {categorias.length > 0
               ? categorias.map((c) => (

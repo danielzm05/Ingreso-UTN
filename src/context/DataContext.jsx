@@ -12,10 +12,17 @@ export const useDataContext = () => {
 export const DataProvider = ({ children }) => {
   const { user } = useAuthContext();
   const [exercises, setExercises] = useState([]);
+  const [randomEx, setRandomEx] = useState([]);
   const [doneExercises, setDoneExercises] = useState([]);
   const [tests, setTests] = useState([]);
   const [topics, setTopics] = useState([]);
   const [formulas, setFormulas] = useState([]);
+
+  const getRandomEx = async (id) => {
+    const { data, error } = await supabase.rpc("get_random_exercise_incomplete", { id: id });
+    if (error) throw error;
+    setRandomEx(data[0]);
+  };
 
   const getTests = async (id) => {
     let query = supabase
@@ -143,6 +150,7 @@ export const DataProvider = ({ children }) => {
         formulas,
         topics,
         doneExercises,
+        randomEx,
         getTests,
         createTest,
         getExercises,
@@ -151,6 +159,7 @@ export const DataProvider = ({ children }) => {
         getTopics,
         checkExercise,
         getDoneExercises,
+        getRandomEx,
       }}
     >
       {children}
