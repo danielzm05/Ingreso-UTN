@@ -28,6 +28,7 @@ export function ExercisePage() {
       nombre={exercises[0]?.Examen.nombre}
       id_examen={exercises[0]?.Examen.id_examen}
       archivo={exercises[0]?.Examen.archivo}
+      formulas={exercises[0]?.Ejercicio_Formula}
       hecho={exercises[0]?.Ejercicio_Completado.some((e) => e.id_usuario === user?.id && e.id_ejercicio === exercises[0]?.id_ejercicio)}
       onChange={changeDone}
     />

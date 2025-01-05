@@ -74,12 +74,14 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "",
               <LightbulbIcon size={20} /> Formulas Utilizadas:
             </h2>
             <ul className="flex flex-col gap-1  list-none">
-              <li className="hover:bg-slate-800 hover:text-white rounded-lg px-2 transition duration-300 ease-in-out">
-                <a href="#" target="_blank" className="flex flex-col text-sm">
-                  <span className="font-semibold">Teorema del Coseno</span>
-                  <span>a+b=c</span>
-                </a>
-              </li>
+              {formulas.map((f) => (
+                <li className="hover:bg-slate-800 hover:text-white rounded-lg px-2 transition duration-300 ease-in-out">
+                  <a href={f.Formula.link} target="_blank" className="flex flex-col text-sm p-1 gap-2">
+                    <span className="font-semibold">{f.Formula.nombre}</span>
+                    <span>{renderContent(f.Formula.formula)}</span>
+                  </a>
+                </li>
+              ))}
             </ul>
           </section>
         </section>

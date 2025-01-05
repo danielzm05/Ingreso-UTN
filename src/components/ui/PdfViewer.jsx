@@ -14,8 +14,8 @@ export function PDfViewer({ url, page }) {
       <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
         <Page pageNumber={page} renderTextLayer={false} renderAnnotationLayer={false} />
       </Document>
-      <p>
-        Page {pageNumber} of {numPages}
+      <p className="text-text2 font-semibold">
+        Pagina {pageNumber} de {numPages}
       </p>
     </div>
   );
