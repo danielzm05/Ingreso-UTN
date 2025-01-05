@@ -1,5 +1,6 @@
 import { Check, NotebookTextIcon, LightbulbIcon } from "lucide-react";
 import { useState } from "react";
+import { PDfViewer } from "./PdfViewer";
 import { Link } from "react-router";
 import parse from "html-react-parser";
 import { InlineMath } from "react-katex";
@@ -65,8 +66,11 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "",
       </section>
 
       {showSolution && solucion ? (
-        <section id="solution" className="py-5 flex justify-between flex-wrap gap-5 border-t border-slate-800">
-          <img src={solucion} alt={consigna} className="w-full max-w-4xl rounded-xl" />
+        <section id="solution" className="max-h-fit py-5 flex justify-between flex-wrap gap-5 border-t border-slate-800">
+          <PDfViewer
+            url={"https://tgzwadnoqfxawrtuwndv.supabase.co/storage/v1/object/public/Ejercicios/c527034b-12f6-4d88-8ff4-8d12cdd3fc9a/PP.pdf"}
+          />
+
           <section className=" text-gray-500 ">
             <h2 className="flex items-center gap-1 text-md font-semibold mb-2">
               <LightbulbIcon size={20} /> Formulas Utilizadas:

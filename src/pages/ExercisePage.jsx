@@ -19,8 +19,8 @@ export function ExercisePage() {
 
   return exercises.length > 1 ? null : (
     <ExercisePageCard
-      respuesta={exercises[0].respuesta}
-      consigna={exercises[0].consigna}
+      respuesta={exercises[0]?.respuesta}
+      consigna={exercises[0]?.consigna}
       img={exercises[0]?.img}
       solucion={exercises[0]?.solucion}
       numero={exercises[0]?.numero}

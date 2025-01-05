@@ -11,6 +11,9 @@ import { useAuthContext } from "./context/AuthContext";
 import { Route, Routes } from "react-router";
 import { ToasterContainer } from "./components/ui/Toaster";
 import { Header } from "./components/Header";
+import { pdfjs } from "react-pdf";
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
 
 function App() {
   const { user, userInfo } = useAuthContext();
