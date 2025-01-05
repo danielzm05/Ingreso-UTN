@@ -66,7 +66,7 @@ export function NewExerciseForm() {
       />
 
       <Input label="Imagen consigna" type="file" name="img" onChange={handleImg} />
-      <Input label="Solución" type="file" name="solucion" onChange={handleImg} />
+      <Input label="Numero de Pagina" type="number" name="solucion" onChange={handleInput} required={true} />
 
       <SelectMultiple
         value={(option) => option.id_formula}

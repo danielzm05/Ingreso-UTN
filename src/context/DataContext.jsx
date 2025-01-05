@@ -57,18 +57,25 @@ export const DataProvider = ({ children }) => {
   };
 
   const createTest = async (newTest) => {
-    const { error } = await supabase
+    const { data: test, error: insertError } = await supabase
       .from("Examen")
-      .insert([{ nombre: newTest.nombre, descripcion: newTest.descripcion, tema: newTest.tema, fecha: newTest.fecha, archivo: newTest.archivo }]);
+      .insert([{ nombre: newTest.nombre, descripcion: newTest.descripcion, tema: newTest.tema, fecha: newTest.fecha }])
+      .select();
+
+    if (insertError) throw error;
+
+    const TestFile = await uploadFile(`Archivo_Examen`, newTest.archivo, test[0].id_examen);
+    const { error } = await supabase.from("Examen").update({ archivo: TestFile }).eq("id_examen", test[0].id_examen);
 
     if (error) throw error;
+
     toast.success("Examen creado con éxito");
   };
 
-  const uploadImg = async (nombre, img, examenId) => {
-    if (!img) return;
+  const uploadFile = async (nombre, file, examenId) => {
+    if (!file) return;
 
-    const { error } = await supabase.storage.from("Ejercicios").upload(`${examenId}/${nombre}`, img);
+    const { error } = await supabase.storage.from("Ejercicios").upload(`${examenId}/${nombre}`, file);
 
     if (error) throw error;
 
@@ -100,9 +107,9 @@ export const DataProvider = ({ children }) => {
     }
     getExercises(id_ejercicio);
   };
+
   const createExercise = async (ex, exTopics, exFormulas) => {
-    const exerciseImg = await uploadImg(`${ex.numero}-Ejercicio`, ex.img, ex.id_examen);
-    const solutionImg = await uploadImg(`${ex.numero}-Solucion`, ex.solucion, ex.id_examen);
+    const exerciseImg = await uploadFile(`${ex.numero}-Ejercicio`, ex.img, ex.id_examen);
 
     const { data: newEx, error } = await supabase
       .from("Ejercicio")
@@ -113,7 +120,7 @@ export const DataProvider = ({ children }) => {
           respuesta: ex.respuesta,
           id_examen: ex.id_examen,
           img: exerciseImg,
-          solucion: solutionImg,
+          solucion: ex.solucion,
         },
       ])
       .select();

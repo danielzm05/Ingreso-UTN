@@ -7,11 +7,17 @@ export function NewTestForm() {
   const [formValues, setFormValues] = useState({
     descripcion: "",
     tema: null,
+    archivo: "",
   });
 
   const handleInput = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
+  };
+
+  const handleFile = (e) => {
+    const { name } = e.target;
+    setFormValues({ ...formValues, [name]: e.target?.files[0] });
   };
 
   const handleSubmit = (e) => {
@@ -27,7 +33,7 @@ export function NewTestForm() {
       <Input label="Descripción" type="text" name="descripcion" onChange={handleInput} />
       <Input label="Tema" type="number" name="tema" onChange={handleInput} />
       <Input label="Año" type="number" name="fecha" onChange={handleInput} />
-      <Input label="Link Archivo" type="text" name="archivo" onChange={handleInput} />
+      <Input label="PDF" type="file" name="archivo" onChange={handleFile} />
 
       <input type="submit" value="Crear" className="p-2 rounded-xl font-semibold w-fit bg-primary text-card cursor-pointer" />
     </form>

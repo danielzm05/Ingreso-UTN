@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Document, Page } from "react-pdf";
 
-export function PDfViewer({ url }) {
+export function PDfViewer({ url, page }) {
   const [numPages, setNumPages] = useState();
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -12,7 +12,7 @@ export function PDfViewer({ url }) {
   return (
     <div>
       <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
-        <Page pageNumber={3} renderTextLayer={false} renderAnnotationLayer={false} />
+        <Page pageNumber={page} renderTextLayer={false} renderAnnotationLayer={false} />
       </Document>
       <p>
         Page {pageNumber} of {numPages}

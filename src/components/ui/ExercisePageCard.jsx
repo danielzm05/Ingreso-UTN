@@ -6,7 +6,7 @@ import parse from "html-react-parser";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 
-export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "", nombre, solucion, formulas, id_examen, hecho, onChange }) {
+export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "", nombre, solucion, formulas, id_examen, hecho, onChange, archivo }) {
   const [showSolution, setShowSolution] = useState(false);
 
   const renderContent = (htmlString) =>
@@ -67,9 +67,7 @@ export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "",
 
       {showSolution && solucion ? (
         <section id="solution" className="max-h-fit py-5 flex justify-between flex-wrap gap-5 border-t border-slate-800">
-          <PDfViewer
-            url={"https://tgzwadnoqfxawrtuwndv.supabase.co/storage/v1/object/public/Ejercicios/c527034b-12f6-4d88-8ff4-8d12cdd3fc9a/PP.pdf"}
-          />
+          <PDfViewer url={archivo} page={solucion} />
 
           <section className=" text-gray-500 ">
             <h2 className="flex items-center gap-1 text-md font-semibold mb-2">
