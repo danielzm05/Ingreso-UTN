@@ -44,7 +44,7 @@ export function NewExerciseForm() {
   };
 
   useEffect(() => {
-    setExFile(tests.find((t) => t.id_examen === formValues.id_examen).archivo);
+    setExFile(formValues.id_examen ? tests.find((t) => t.id_examen === formValues.id_examen).archivo : "");
   }, [formValues.id_examen]);
 
   return (
