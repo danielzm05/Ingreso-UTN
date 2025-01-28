@@ -10,7 +10,7 @@ export function Dashboard() {
 
   useEffect(() => {
     getDoneExercises();
-    getRandomEx("f14f1396-4d72-4305-87a3-098adcfa47e2");
+    getRandomEx();
   }, []);
 
   return (
@@ -21,7 +21,7 @@ export function Dashboard() {
           <h2 className="flex items-center text-md font-semibold">
             <Flame size={18} /> Tu Proximo Ejercicio
           </h2>
-          <RandomExercise ex={randomEx} newExercise={() => getRandomEx("f14f1396-4d72-4305-87a3-098adcfa47e2")} />
+          <RandomExercise ex={randomEx} newExercise={() => getRandomEx()} />
         </article>
 
         <article className="col-span-2 row-span-1 flex flex-col gap-4 bg-card rounded-xl p-3 ">

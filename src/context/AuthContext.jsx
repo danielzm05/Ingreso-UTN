@@ -18,6 +18,7 @@ export const AuthProvider = ({ children }) => {
   const logOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
+    console.log("log out");
   };
 
   const signUp = async (nombre, email, password) => {

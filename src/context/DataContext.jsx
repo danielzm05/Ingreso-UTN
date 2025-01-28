@@ -18,8 +18,8 @@ export const DataProvider = ({ children }) => {
   const [topics, setTopics] = useState([]);
   const [formulas, setFormulas] = useState([]);
 
-  const getRandomEx = async (id) => {
-    const { data, error } = await supabase.rpc("get_random_exercise_incomplete", { id: id });
+  const getRandomEx = async (userId = user.id) => {
+    const { data, error } = await supabase.rpc("get_random_exercise_incomplete", { id: userId });
     if (error) throw error;
     setRandomEx(data[0]);
   };
@@ -52,7 +52,6 @@ export const DataProvider = ({ children }) => {
   const getDoneExercises = async () => {
     const { data, error } = await supabase.from("Ejercicio_Completado").select("*, Ejercicio(*, Ejercicio_Tema ( Tema(*) )) ");
     if (error) throw error;
-    console.log(data);
     setDoneExercises(data);
   };
 
