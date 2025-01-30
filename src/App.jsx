@@ -2,7 +2,7 @@ import { Home } from "./pages/Home";
 import { Examenes } from "./pages/Examenes";
 import { TestPage } from "./pages/TestPage";
 import { LoginPage } from "./pages/LoginPage";
-import { SignupPage } from "./pages/SignUpPage";
+import { SignupPage } from "./pages/SignupPage";
 import { AdminPage } from "./pages/AdminPage";
 import { ExercisePage } from "./pages/ExercisePage";
 import { Dashboard } from "./pages/Dashboard";
