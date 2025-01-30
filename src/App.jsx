@@ -6,6 +6,7 @@ import { SignupPage } from "./pages/SignUpPage";
 import { AdminPage } from "./pages/AdminPage";
 import { ExercisePage } from "./pages/ExercisePage";
 import { Dashboard } from "./pages/Dashboard";
+import { NotFound } from "./pages/NotFound";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useAuthContext } from "./context/AuthContext";
 import { Route, Routes } from "react-router";
@@ -22,6 +23,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
         <Route path="/examenes" element={<Examenes />}></Route>
         <Route path="/ingresar" element={<LoginPage />}></Route>
         <Route path="/registrarse" element={<SignupPage />}></Route>
