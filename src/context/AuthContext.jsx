@@ -44,8 +44,9 @@ export const AuthProvider = ({ children }) => {
 
     if (error) {
       toast.error("Usuario o contraseña incorrectas");
+      throw error;
     }
-    navigate("/dashboard");
+    navigate("/");
   };
 
   const getUserInfo = async (userId = user.id) => {
@@ -59,7 +60,6 @@ export const AuthProvider = ({ children }) => {
 
   const checkUser = async () => {
     const { data } = await supabase.auth.getUser();
-    console.log(data);
     if (data.user) {
       setUser(data.user);
       getUserInfo(data.user.id);
