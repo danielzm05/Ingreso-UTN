@@ -11,16 +11,28 @@ export function Examenes() {
     getTests();
   }, []);
 
-  const filteredTests = tests.filter((e) => e.nombre.toLowerCase().includes(searchTerm.toLowerCase()) || e.fecha?.toString().includes(searchTerm));
+  const filteredTests = tests.filter((e) => {
+    const search = searchTerm.toLowerCase().trim();
+    const year = e.fecha?.toString();
+
+    return e.nombre.toLowerCase().includes(search) || (year && search.includes(year));
+  });
+
   return (
     <main className="flex flex-col gap-3 p-3 sm:p-10">
       <SearchBar placeholder="Buscar examen..." onSearch={(query) => setSearchTerm(query)} />
+
       {filteredTests.length > 0 ? (
-        filteredTests.map((t) => (
-          <TestCard key={t.id_examen} id={t.id_examen} nombre={t.nombre} descripcion={t.descripcion} tema={t.tema} fecha={t.fecha} />
-        ))
+        <div className="grid gap-3 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+          {filteredTests.map((t, i) => (
+            <>
+              {t.fecha !== filteredTests[i - 1]?.fecha ? <h2 className="text-text2 font-medium text-lg col-span-full">{t.fecha}</h2> : null}
+              <TestCard key={t.id_examen} id={t.id_examen} nombre={t.nombre} descripcion={t.descripcion} tema={t.tema} fecha={t.fecha} />
+            </>
+          ))}
+        </div>
       ) : (
-        <p className="text-center text-slate-800">No encontramos el examen que buscabas :/</p>
+        <p className="text-center text-text2">No encontramos el examen que buscabas :/</p>
       )}
     </main>
   );
