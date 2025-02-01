@@ -4,7 +4,7 @@ import { Radical, FileText, ChartColumn } from "lucide-react";
 export const HeaderItems = ({ isLogged, className }) => {
   return (
     <ul className={`flex gap-5 text-gray-500 font-medium ${className}`}>
-      <NavLink to="/">
+      <NavLink to="/ejercicios">
         <li className=" flex items-center gap-1 outline-none">
           <Radical size={18} />
           Ejercicios

@@ -16,7 +16,7 @@ export function ExerciseCard({ id, id_examen, numero, tema, fecha, examen, consi
 
   return (
     <Link to={`/examenes/${id_examen}/ejercicio/${id}`}>
-      <article className="h-36 flex justify-between p-3 gap-3 bg-card rounded-xl cursor-pointer hover:bg-hover transition duration-300 ease-in-out">
+      <article className="w-full h-32 flex justify-between p-3 gap-3 bg-card rounded-xl cursor-pointer hover:bg-hover transition duration-300 ease-in-out">
         {img ? <img className="rounded bg-white aspect-square w-28 h-full object-contain" src={img} alt={consigna} /> : null}
 
         <section className="w-full flex flex-col gap-1 items-start justify-start">

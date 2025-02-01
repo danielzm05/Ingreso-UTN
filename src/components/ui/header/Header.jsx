@@ -10,7 +10,7 @@ export function Header() {
   const { user, logOut } = useAuthContext();
   const [showMenu, setShowMenu] = useState(false);
   return (
-    <header className="py-5 sm:px-5 px-2 flex items-center justify-between">
+    <header className="py-5 sm:px-5 px-2 flex items-center justify-between max-h-[10vh]">
       <NavLink to="/">
         <h1 className="text-lg font-semibold text-nowrap select-none">
           <span className="text-primary">ⵥ</span> INGRESO UTN

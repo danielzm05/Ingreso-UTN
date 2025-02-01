@@ -4,7 +4,7 @@ import { useDataContext } from "../context/DataContext";
 import { useAuthContext } from "../context/AuthContext";
 import { SearchBar } from "../components/ui/SearchBar";
 
-export function Home() {
+export function Ejercicios() {
   const { user } = useAuthContext();
   const { exercises, getExercises } = useDataContext();
   const [searchTerm, setSearchTerm] = useState("");

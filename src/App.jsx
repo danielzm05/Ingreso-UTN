@@ -1,8 +1,9 @@
-import { Home } from "./pages/Home";
+import { Ejercicios } from "./pages/Ejercicios";
 import { Examenes } from "./pages/Examenes";
 import { TestPage } from "./pages/TestPage";
 import { LoginPage } from "./pages/LoginPage";
 import { SignupPage } from "./pages/SignupPage";
+import { LandingPage } from "./pages/LandingPage";
 import { AdminPage } from "./pages/AdminPage";
 import { ExercisePage } from "./pages/ExercisePage";
 import { Dashboard } from "./pages/Dashboard";
@@ -22,7 +23,8 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route path="/" element={<LandingPage />}></Route>
+        <Route path="/ejercicios" element={<Ejercicios />}></Route>
         <Route path="*" element={<NotFound />}></Route>
         <Route path="/examenes" element={<Examenes />}></Route>
         <Route path="/ingresar" element={<LoginPage />}></Route>

@@ -18,8 +18,9 @@ export const DataProvider = ({ children }) => {
   const [topics, setTopics] = useState([]);
   const [formulas, setFormulas] = useState([]);
 
-  const getRandomEx = async (userId = user.id) => {
-    const { data, error } = await supabase.rpc("get_random_exercise_incomplete", { id: userId });
+  const getRandomEx = async () => {
+    const SQLfunction = user ? "get_random_exercise_incomplete" : "get_random_exercise";
+    const { data, error } = await supabase.rpc(SQLfunction, { id: user?.id });
     if (error) throw error;
     setRandomEx(data[0]);
   };
