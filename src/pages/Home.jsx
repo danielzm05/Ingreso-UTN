@@ -31,7 +31,7 @@ export function Home() {
               consigna={ex.consigna}
               categorias={ex.Ejercicio_Tema}
               img={ex.img}
-              hecho={ex.Ejercicio_Completado.some((e) => e.id_usuario === user.id && e.id_ejercicio === ex.id_ejercicio)}
+              hecho={user ? ex.Ejercicio_Completado.some((e) => e.id_usuario === user?.id && e.id_ejercicio === ex.id_ejercicio) : false}
             />
           ))
         ) : (
