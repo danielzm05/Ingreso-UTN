@@ -10,9 +10,9 @@ export function LandingPage() {
   }, []);
   return (
     <main className="sm:px-5 px-2 bg-background2">
-      <section className="flex flex-col items-center justify-between h-[90vh] gap-20 pt-32 pb-10">
+      <section className="flex flex-col items-center justify-center h-[90vh] gap-20 py-20">
         <h1 className="text-center text-4xl sm:text-5xl font-semibold text-text1">
-          La herramienta gratuita que te ayudará a<br /> <span className="text-primary">ingresar a la UTN</span>
+          La herramienta que te ayudará a<br /> <span className="text-primary">ingresar a la UTN</span>
         </h1>
 
         <div className="flex flex-col items-center gap-3 w-[90vw] sm:w-[60vw]">
