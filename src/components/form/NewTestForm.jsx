@@ -5,7 +5,6 @@ import { Input } from "./Input";
 export function NewTestForm() {
   const { createTest } = useDataContext();
   const [formValues, setFormValues] = useState({
-    descripcion: "",
     tema: null,
     archivo: "",
   });
@@ -30,7 +29,6 @@ export function NewTestForm() {
     <form id="test-form" onSubmit={handleSubmit} className="flex flex-col gap-3">
       <Input label="Nombre" type="text" name="nombre" required={true} onChange={handleInput} />
 
-      <Input label="Descripción" type="text" name="descripcion" onChange={handleInput} />
       <Input label="Tema" type="number" name="tema" onChange={handleInput} />
       <Input label="Año" type="number" name="fecha" onChange={handleInput} />
       <Input label="PDF" type="file" name="archivo" onChange={handleFile} />

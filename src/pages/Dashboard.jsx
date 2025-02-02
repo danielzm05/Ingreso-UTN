@@ -13,6 +13,10 @@ export function Dashboard() {
     getRandomEx();
   }, []);
 
+  const today = new Date().toISOString().split("T")[0];
+
+  const exercisesToday = doneExercises.filter((e) => e.fecha.split("T")[0] === today);
+
   return (
     <main className="flex flex-col gap-3 py-5 sm:px-5 px-2 ">
       <h1 className="text-2xl font-semibold">Dashboard</h1>
@@ -24,11 +28,11 @@ export function Dashboard() {
           <RandomExercise ex={randomEx} newExercise={() => getRandomEx()} />
         </article>
 
-        <StatCard title="Ejercicios Completados de Hoy" stat={100} className={"border-l-4 border-primary"}>
+        <StatCard title="Ejercicios Completados Hoy" stat={exercisesToday.length} className={"border-l-4 border-primary"}>
           <Flame size={18} />
         </StatCard>
 
-        <StatCard title="Ejercicios Completados de Hoy" stat={100} className={" border-l-4 border-primary"}>
+        <StatCard title="Ejercicios Completados de Hoy" stat={exercisesToday.length} className={" border-l-4 border-primary"}>
           <Flame size={18} />
         </StatCard>
         <StatCard title="Ejercicios completados" stat={doneExercises?.length} className={" border-l-4 border-primary"}>

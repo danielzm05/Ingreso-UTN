@@ -59,7 +59,7 @@ export const DataProvider = ({ children }) => {
   const createTest = async (newTest) => {
     const { data: test, error: insertError } = await supabase
       .from("Examen")
-      .insert([{ nombre: newTest.nombre, descripcion: newTest.descripcion, tema: newTest.tema, fecha: newTest.fecha }])
+      .insert([{ nombre: newTest.nombre, tema: newTest.tema, fecha: newTest.fecha }])
       .select();
 
     if (insertError) throw error;
