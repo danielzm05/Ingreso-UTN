@@ -18,10 +18,11 @@ export const AuthProvider = ({ children }) => {
   const logOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
+    setUser(null);
   };
 
   const signUp = async (nombre, email, password) => {
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email: email,
       password: password,
       options: {
@@ -31,12 +32,14 @@ export const AuthProvider = ({ children }) => {
       },
     });
 
-    if (error) throw error;
-    navigate("/examenes");
+    if (error) {
+      toast.error("Hubo un error al registrarse. Intente nuevamente");
+      throw error;
+    }
   };
 
   const signIn = async (email, password) => {
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
     });
@@ -47,6 +50,12 @@ export const AuthProvider = ({ children }) => {
     }
     navigate("/");
   };
+
+  async function signInWithGithub() {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "github",
+    });
+  }
 
   const getUserInfo = async (userId = user.id) => {
     if (userId) {
@@ -82,5 +91,9 @@ export const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  return <AuthContext.Provider value={{ user, userInfo, userEvent, getUserInfo, logOut, signUp, signIn }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, userInfo, userEvent, getUserInfo, logOut, signUp, signIn, signInWithGithub }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
