@@ -6,7 +6,20 @@ import parse from "html-react-parser";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 
-export function ExercisePageCard({ respuesta, consigna, img, numero, fecha = "", nombre, solucion, formulas, id_examen, hecho, onChange, archivo }) {
+export function ExercisePageCard({
+  respuesta,
+  consigna,
+  img,
+  numero,
+  fecha = "",
+  nombre,
+  solucion,
+  formulas,
+  id_examen,
+  hecho = false,
+  onChange,
+  archivo,
+}) {
   const [showSolution, setShowSolution] = useState(false);
 
   const renderContent = (htmlString) =>

@@ -31,25 +31,21 @@ export function Dashboard() {
     <main className="flex flex-col gap-3 py-5 sm:px-5 px-2 ">
       <h1 className="text-2xl font-semibold">Dashboard</h1>
       <section className="grid grid-cols-2 sm:grid-cols-3 grid-rows-6 sm:grid-rows-4 gap-4 max-h-[260vh] sm:max-h-[150vh]">
-        <article className="col-span-2 flex flex-col gap-4 bg-card rounded-xl p-3 ">
+        <article className="col-span-3 flex flex-col gap-4 bg-card rounded-xl p-3 ">
           <h2 className="flex items-center text-md font-semibold">
-            <Flame size={18} /> Tu Proximo Ejercicio
+            <Flame size={24} /> Tu Proximo Ejercicio
           </h2>
           <RandomExercise ex={randomEx} newExercise={() => getRandomEx()} />
         </article>
 
-        <StatCard title="Ejercicios Completados Hoy" stat={exercisesToday.length} className={"border-l-4 border-primary"}>
-          <Flame size={18} />
-        </StatCard>
-
         <StatCard title="Ejercicios Completados de Hoy" stat={exercisesToday.length} className={" border-l-4 border-primary"}>
-          <Flame size={18} />
+          <Flame size={24} />
         </StatCard>
         <StatCard title="Ejercicios completados" stat={doneExercises?.length} className={" border-l-4 border-primary"}>
-          <CircleCheckBig size={18} />
+          <CircleCheckBig size={24} />
         </StatCard>
         <StatCard title="Examenes Completados" stat={doneTests()} className={"border-l-4 border-primary"}>
-          <FileBadge size={18} />
+          <FileBadge size={24} />
         </StatCard>
 
         <article className="col-span-2 row-span-1 sm:row-span-2 flex flex-col gap-4 bg-card rounded-xl p-3 ">
