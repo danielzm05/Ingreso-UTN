@@ -6,16 +6,26 @@ import { RandomExercise } from "../components/ui/RandomExercise";
 import { useEffect } from "react";
 import { StatCard } from "../components/ui/StatCard";
 export function Dashboard() {
-  const { getDoneExercises, doneExercises, getRandomEx, randomEx } = useDataContext();
+  const { getDoneExercises, doneExercises, getRandomEx, randomEx, getTests, tests, doneExercisesTest } = useDataContext();
 
   useEffect(() => {
     getDoneExercises();
     getRandomEx();
+    getTests();
   }, []);
 
   const today = new Date().toISOString().split("T")[0];
-
   const exercisesToday = doneExercises.filter((e) => e.fecha.split("T")[0] === today);
+
+  const doneTests = () => {
+    let count = 0;
+    tests.forEach((t) => {
+      if (t.Ejercicio.length === doneExercisesTest(t.Ejercicio)) {
+        count += 1;
+      }
+    });
+    return count;
+  };
 
   return (
     <main className="flex flex-col gap-3 py-5 sm:px-5 px-2 ">
@@ -38,7 +48,7 @@ export function Dashboard() {
         <StatCard title="Ejercicios completados" stat={doneExercises?.length} className={" border-l-4 border-primary"}>
           <CircleCheckBig size={18} />
         </StatCard>
-        <StatCard title="Examenes Completados" stat={100} className={"border-l-4 border-primary"}>
+        <StatCard title="Examenes Completados" stat={doneTests()} className={"border-l-4 border-primary"}>
           <FileBadge size={18} />
         </StatCard>
 

@@ -56,6 +56,16 @@ export const DataProvider = ({ children }) => {
     setDoneExercises(data);
   };
 
+  const doneExercisesTest = (exercises) => {
+    let count = 0;
+    exercises.forEach((e) => {
+      if (e.Ejercicio_Completado.some((ec) => ec.id_usuario === user?.id)) {
+        count += 1;
+      }
+    });
+    return count;
+  };
+
   const createTest = async (newTest) => {
     const { data: test, error: insertError } = await supabase
       .from("Examen")
@@ -167,6 +177,7 @@ export const DataProvider = ({ children }) => {
         checkExercise,
         getDoneExercises,
         getRandomEx,
+        doneExercisesTest,
       }}
     >
       {children}
