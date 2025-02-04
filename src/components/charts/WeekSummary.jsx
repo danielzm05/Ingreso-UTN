@@ -5,20 +5,31 @@ import { Bar } from "react-chartjs-2";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export function WeekSummary({ exercises }) {
-  const fechas = exercises.map((e) => e.fecha.slice(5, 10)).sort((a, b) => new Date(a) - new Date(b));
-  const fechasUnicas = [...new Set(fechas)];
+  const days = [];
 
-  const conteo = fechas.reduce((acc, fecha) => {
-    acc[fecha] = (acc[fecha] || 0) + 1;
-    return acc;
-  }, {});
+  for (let i = 0; i < 7; i++) {
+    const date = new Date();
+    date.setDate(date.getDate() - i);
+    days.push({
+      date: date.toISOString().split("T")[0],
+      count: 0,
+    });
+  }
+
+  days.forEach((d) => {
+    exercises.forEach((e) => {
+      if (e.fecha.split("T")[0] === d.date) {
+        d.count += 1;
+      }
+    });
+  });
 
   const data = {
-    labels: fechasUnicas.slice(-7),
+    labels: days.map((d) => d.date.slice(8, 10) + "/" + d.date.slice(5, 7)),
     datasets: [
       {
         label: "Ejercicios",
-        data: Object.values(conteo).slice(-7),
+        data: days.map((d) => d.count),
         backgroundColor: "#3CDC7E",
         borderRadius: 3,
       },
