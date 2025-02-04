@@ -12,7 +12,7 @@ export function Header() {
   return (
     <header className="py-5 sm:px-5 px-2 flex items-center justify-between max-h-[10vh]">
       <NavLink to="/">
-        <h1 className="text-lg font-semibold text-nowrap select-none">
+        <h1 className="text-lg font-semibold text-nowrap select-none text-text1">
           <span className="text-primary">ⵥ</span> INGRESO UTN
         </h1>
       </NavLink>

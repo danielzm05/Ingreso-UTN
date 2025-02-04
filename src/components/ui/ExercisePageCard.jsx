@@ -41,7 +41,7 @@ export function ExercisePageCard({
             </p>
           </Link>
         </header>
-        <h1 className="max-w-full text-lg text-start font-semibold">{renderContent(consigna ? consigna : "")}</h1>
+        <h1 className="max-w-full text-lg text-start font-semibold text-text1">{renderContent(consigna ? consigna : "")}</h1>
         {img && (
           <a href={img} target="_blank">
             <img src={img} alt={consigna} className="mt-3 border border-slate-800 rounded-xl max-h-80 object-cover" />
@@ -49,7 +49,7 @@ export function ExercisePageCard({
         )}
 
         <footer className="min-w-full flex justify-between mt-6">
-          <p className="text-end font-semibold">RTA: {renderContent(respuesta ? respuesta : "")}</p>
+          <p className="text-end font-semibold text-text1">RTA: {renderContent(respuesta ? respuesta : "")}</p>
           <div className="flex gap-4 text-gray-500 font-medium">
             <div className="flex items-center gap-1  ">
               <label className="flex items-center cursor-pointer relative" htmlFor="check-2">
