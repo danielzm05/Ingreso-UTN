@@ -2,11 +2,13 @@ import { RandomExercise } from "../components/ui/RandomExercise";
 import { useEffect } from "react";
 import { useDataContext } from "../context/DataContext";
 import { Flame } from "lucide-react";
+import { MarqueeVertical } from "@/components/ui/MarqueeVertical";
 
 export function LandingPage() {
-  const { getRandomEx, randomEx } = useDataContext();
+  const { getRandomEx, getExercises, randomEx, exercises } = useDataContext();
   useEffect(() => {
     getRandomEx();
+    getExercises();
   }, []);
   return (
     <main className="sm:px-5 px-2 bg-background2">
@@ -21,6 +23,10 @@ export function LandingPage() {
           </h2>
           <RandomExercise ex={randomEx} newExercise={() => getRandomEx()} />
         </div>
+      </section>
+      <section className="flex flex-col sm:flex-row items-center justify-center h-[90vh] gap-20 px-5">
+        <h2 className="text-center sm:text-left text-2xl font-semibold text-text1">Practica con los ejercicios de años anteriores.</h2>
+        <MarqueeVertical exercises={exercises} />
       </section>
     </main>
   );
