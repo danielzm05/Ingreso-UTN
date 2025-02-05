@@ -28,7 +28,7 @@ export function Dashboard() {
   };
 
   return (
-    <main className="flex flex-col gap-3 py-5 sm:px-5 px-2 ">
+    <main className="flex flex-col gap-3 py-5 sm:px-5 px-2 bg-gradient-to-t from-background3 to-background">
       <h1 className="text-2xl font-semibold">Dashboard</h1>
       <section className="grid grid-cols-2 sm:grid-cols-3 grid-rows-6 sm:grid-rows-4 gap-4 max-h-[260vh] sm:max-h-[150vh]">
         <article className="col-span-3 flex flex-col gap-4 bg-card rounded-xl p-3 ">

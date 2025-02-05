@@ -19,7 +19,7 @@ export function Examenes() {
   });
 
   return (
-    <main className="flex flex-col gap-3 p-3 sm:p-10">
+    <main className="min-h-[90vh] flex flex-col gap-3 p-3 sm:p-10 bg-gradient-to-t from-background3 to-background">
       <SearchBar placeholder="Buscar examen..." onSearch={(query) => setSearchTerm(query)} />
 
       {filteredTests.length > 0 ? (

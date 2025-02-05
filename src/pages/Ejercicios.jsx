@@ -16,7 +16,7 @@ export function Ejercicios() {
   const filteredExercises = exercises.filter((e) => e.consigna.toLowerCase().includes(searchTerm.toLowerCase()));
   return (
     <>
-      <main className="flex flex-col gap-3 p-3 sm:p-10">
+      <main className="flex flex-col gap-3 p-3 sm:p-10 bg-gradient-to-t from-background3 to-background">
         <SearchBar placeholder="Buscar ejercicio..." onSearch={(query) => setSearchTerm(query)} />
         {filteredExercises.length > 0 ? (
           filteredExercises.map((ex) => (
@@ -27,11 +27,9 @@ export function Ejercicios() {
               fecha={ex.Examen.fecha}
               examen={ex.Examen.nombre}
               tema={ex.Examen.tema}
-              numero={ex.numero}
-              consigna={ex.consigna}
               categorias={ex.Ejercicio_Tema}
-              img={ex.img}
               hecho={user ? ex.Ejercicio_Completado.some((e) => e.id_usuario === user?.id && e.id_ejercicio === ex.id_ejercicio) : false}
+              {...ex}
             />
           ))
         ) : (
