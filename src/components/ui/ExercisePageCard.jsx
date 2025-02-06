@@ -1,4 +1,4 @@
-import { Check, NotebookTextIcon, LightbulbIcon } from "lucide-react";
+import { Check, NotebookTextIcon, LightbulbIcon, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { PDfViewer } from "./PdfViewer";
 import { Link } from "react-router";
@@ -82,16 +82,17 @@ export function ExercisePageCard({
         <section id="solution" className="max-h-fit py-5 flex justify-between flex-wrap gap-5 border-t border-slate-800">
           <PDfViewer url={archivo} page={solucion} />
 
-          <section className=" text-gray-500 ">
-            <h2 className="flex items-center gap-1 text-md font-semibold mb-2">
-              <LightbulbIcon size={20} /> Formulas Utilizadas:
-            </h2>
-            <ul className="flex flex-col gap-1  list-none">
+          <section>
+            <h2 className="text-md font-semibold mb-2 text-text1 ">Formulas Utilizadas:</h2>
+            <ul className="flex flex-col gap-3 list-none">
               {formulas.map((f) => (
-                <li className="hover:bg-slate-800 hover:text-white rounded-lg px-2 transition duration-300 ease-in-out">
+                <li className="hover:bg-slate-800 hover:text-white rounded-lg transition duration-300 ease-in-out">
                   <a href={f.Formula.link} target="_blank" className="flex flex-col text-sm p-1 gap-2">
-                    <span className="font-semibold">{f.Formula.nombre}</span>
-                    <span>{renderContent(f.Formula.formula)}</span>
+                    <span className="flex gap-1 items-center font-semibold text-text1">
+                      <ChevronRight size={14} />
+                      {f.Formula.nombre}
+                    </span>
+                    <span className="pl-5 text-gray-500">{renderContent(f.Formula.formula)}</span>
                   </a>
                 </li>
               ))}
