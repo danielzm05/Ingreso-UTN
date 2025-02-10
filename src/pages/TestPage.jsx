@@ -27,7 +27,7 @@ export function TestPage() {
     });
 
   return (
-    <main className="min-h-[90vh] bg-gradient-to-t from-background3 to-background">
+    <main className="min-h-[90vh] grid place-content-center bg-gradient-to-t from-background3 to-background">
       {tests.length > 0 && (
         <article className="m-3 sm:m-10 flex flex-col py-3 px-5 gap-1 bg-card rounded-xl border border-slate-800" key={tests[0].id_examen}>
           <header className="pb-6 pt-6">

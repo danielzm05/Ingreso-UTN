@@ -32,7 +32,7 @@ export function ExercisePageCard({
     });
 
   return (
-    <article className="m-3 sm:m-10 flex flex-col p-5 gap-3 border border-slate-800 rounded-xl bg-card">
+    <article className="mx-3 sm:mx-10 flex flex-col p-5 gap-3 border border-slate-800 rounded-xl bg-card">
       <section className="min-w-full flex flex-col gap-2 items-start justify-start">
         <header>
           <Link to={`/examenes/${id_examen}`}>
@@ -82,22 +82,24 @@ export function ExercisePageCard({
         <section id="solution" className="max-h-fit py-5 flex justify-between flex-wrap gap-5 border-t border-slate-800">
           <PDfViewer url={archivo} page={solucion} />
 
-          <section>
-            <h2 className="text-md font-semibold mb-2 text-text1 ">Formulas Utilizadas:</h2>
-            <ul className="flex flex-col gap-3 list-none">
-              {formulas.map((f) => (
-                <li className="hover:bg-slate-800 hover:text-white rounded-lg transition duration-300 ease-in-out">
-                  <a href={f.Formula.link} target="_blank" className="flex flex-col text-sm p-1 gap-2">
-                    <span className="flex gap-1 items-center font-semibold text-text1">
-                      <ChevronRight size={14} />
-                      {f.Formula.nombre}
-                    </span>
-                    <span className="pl-5 text-gray-500">{renderContent(f.Formula.formula)}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
+          {formulas.length > 0 && (
+            <section>
+              <h2 className="text-md font-semibold mb-2 text-text1 ">Formulas Utilizadas:</h2>
+              <ul className="flex flex-col gap-3 list-none">
+                {formulas.map((f) => (
+                  <li className="hover:bg-slate-800 hover:text-white rounded-lg transition duration-300 ease-in-out">
+                    <a href={f.Formula.link} target="_blank" className="flex flex-col text-sm p-1 gap-2">
+                      <span className="flex gap-1 items-center font-semibold text-text1">
+                        <ChevronRight size={14} />
+                        {f.Formula.nombre}
+                      </span>
+                      <span className="pl-5 text-gray-500">{renderContent(f.Formula.formula)}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
         </section>
       ) : null}
     </article>

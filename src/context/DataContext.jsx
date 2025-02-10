@@ -29,7 +29,8 @@ export const DataProvider = ({ children }) => {
     let query = supabase
       .from("Examen")
       .select("*, Ejercicio(*, Ejercicio_Completado(*))")
-      .order("numero", { referencedTable: "Ejercicio", ascending: true });
+      .order("numero", { referencedTable: "Ejercicio", ascending: true })
+      .order("fecha", { ascending: false });
     if (id) {
       query = query.eq("id_examen", id);
     }
