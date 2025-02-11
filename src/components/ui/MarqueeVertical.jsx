@@ -7,7 +7,7 @@ export function MarqueeVertical({ exercises }) {
 
   return (
     <div className="relative flex h-[500px] w-full flex-row items-center justify-center overflow-hidden ">
-      <Marquee pauseOnHover vertical className="[--duration:20s]">
+      <Marquee pauseOnHover vertical className="[--duration:20s] hidden sm:flex">
         {firstRow?.map((ex) => (
           <ExerciseCard key={ex?.id_ejercicio} id={ex?.id_ejercicio} {...ex} />
         ))}
