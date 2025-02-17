@@ -16,7 +16,7 @@ export function ExerciseCard({ id, id_examen, numero, tema, fecha, examen, consi
 
   return (
     <Link to={`/examenes/${id_examen}/ejercicio/${id}`}>
-      <article className="w-full h-32 flex justify-between p-3 gap-3 bg-card rounded-xl cursor-pointer hover:bg-hover transition duration-300 ease-in-out">
+      <article className="w-full h-28 sm:h-32 flex justify-between p-3 gap-3 bg-card rounded-xl cursor-pointer hover:bg-hover transition duration-300 ease-in-out">
         {img ? <img className="rounded bg-white aspect-square w-28 h-full object-contain" src={img} alt={consigna} /> : null}
 
         <section className="w-full flex flex-col gap-1 items-start justify-start">
@@ -30,7 +30,7 @@ export function ExerciseCard({ id, id_examen, numero, tema, fecha, examen, consi
               {examen} {fecha} {tema ? `| Tema ${tema}` : null}
             </p>
           </header>
-          <h1 className="max-h-12 max-w-full text-base text-text1 text-start font-semibold text-ellipsis overflow-hidden">
+          <h1 className="max-h-16 sm:max-h-12 max-w-full text-sm sm:text-base text-text1 text-start font-semibold text-ellipsis overflow-hidden">
             {renderContent(consigna ? consigna : "")}
           </h1>
           <div className="flex gap-3 mt-auto">

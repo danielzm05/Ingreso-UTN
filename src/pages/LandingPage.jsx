@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useDataContext } from "../context/DataContext";
 import { Flame } from "lucide-react";
 import { MarqueeVertical } from "@/components/ui/MarqueeVertical";
+import { Button } from "@/components/ui/Button";
+import { Shuffle } from "lucide-react";
 
 export function LandingPage() {
   const { getRandomEx, getExercises, randomEx, exercises } = useDataContext();
@@ -22,7 +24,12 @@ export function LandingPage() {
           <h2 className="flex gap-1 items-center text-md font-semibold italic">
             <Flame size={18} /> Comienza con tu primer ejercicio
           </h2>
-          <RandomExercise ex={randomEx} newExercise={() => getRandomEx()} />
+          <RandomExercise ex={randomEx}>
+            <Button onClick={() => getRandomEx()} className={"p-1 flex gap-2 items-center font-semibold max-w-fit text-sm text-text2"}>
+              <Shuffle size={14} />
+              Nuevo Ejercicio
+            </Button>
+          </RandomExercise>
         </div>
       </section>
       <section className="flex flex-col sm:flex-row items-center justify-center h-[90vh] gap-20 px-5 bg-gradient-to-t from-background2 via-background3 to-background3">

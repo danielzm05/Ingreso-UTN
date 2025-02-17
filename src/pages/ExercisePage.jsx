@@ -18,7 +18,7 @@ export function ExercisePage() {
   };
 
   return (
-    <main className="min-h-[90vh] grid place-content-center bg-gradient-to-t from-background3 to-background">
+    <main className="min-h-[90vh] bg-gradient-to-t from-background3 to-background">
       {exercises.length > 1 ? null : (
         <ExercisePageCard
           key={exercises[0]?.Examen.id_examen}
