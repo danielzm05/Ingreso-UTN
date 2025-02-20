@@ -1,6 +1,7 @@
 import { SearchBar } from "../components/ui/SearchBar";
 import { TestCard } from "../components/ui/TestCard";
 import { useDataContext } from "../context/DataContext";
+import { Fragment } from "react";
 import { useEffect, useState } from "react";
 
 export function Examenes() {
@@ -23,12 +24,11 @@ export function Examenes() {
       <SearchBar placeholder="Buscar examen..." onSearch={(query) => setSearchTerm(query)} />
 
       {filteredTests.length > 0 ? (
-        <div className="grid gap-3 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2" key={filteredTests.length}>
+        <div className="grid gap-3 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
           {filteredTests.map((t, i) => (
-            <>
+            <Fragment key={t.id_examen}>
               {t.fecha !== filteredTests[i - 1]?.fecha ? <h2 className="text-text2 font-medium text-lg col-span-full">{t.fecha}</h2> : null}
               <TestCard
-                key={t.id_examen}
                 id={t.id_examen}
                 nombre={t.nombre}
                 tema={t.tema}
@@ -36,7 +36,7 @@ export function Examenes() {
                 cantEx={t.Ejercicio.length}
                 exDone={doneExercisesTest(t.Ejercicio)}
               />
-            </>
+            </Fragment>
           ))}
         </div>
       ) : (

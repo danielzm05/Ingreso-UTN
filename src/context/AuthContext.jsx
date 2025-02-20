@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }) => {
       toast.error("Hubo un error al registrarse. Intente nuevamente");
       throw error;
     }
+    return { success: true, email: email };
   };
 
   const signIn = async (email, password) => {
