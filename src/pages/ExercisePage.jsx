@@ -26,6 +26,7 @@ export function ExercisePage() {
           consigna={exercises[0]?.consigna}
           img={exercises[0]?.img}
           solucion={exercises[0]?.solucion}
+          autor={exercises[0]?.Examen.autor}
           numero={exercises[0]?.numero}
           fecha={exercises[0]?.Examen.fecha}
           nombre={exercises[0]?.Examen.nombre}

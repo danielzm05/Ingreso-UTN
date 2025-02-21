@@ -5,6 +5,7 @@ import { Flame } from "lucide-react";
 import { MarqueeVertical } from "@/components/ui/MarqueeVertical";
 import { Button } from "@/components/ui/Button";
 import { Shuffle } from "lucide-react";
+import dashboardImg from "../img/dashboard.png";
 
 export function LandingPage() {
   const { getRandomEx, getExercises, randomEx, exercises } = useDataContext();
@@ -12,6 +13,7 @@ export function LandingPage() {
     getRandomEx();
     getExercises();
   }, []);
+
   return (
     <main className="bg-background2">
       <section className="flex flex-col items-center justify-center h-[90vh] gap-20 py-20 px-5 bg-gradient-to-t from-background3 to-background">
@@ -35,6 +37,10 @@ export function LandingPage() {
       <section className="flex flex-col sm:flex-row items-center justify-center h-[90vh] gap-20 px-5 bg-gradient-to-t from-background2 via-background3 to-background3">
         <h2 className="text-center sm:text-left text-2xl font-semibold text-text1">Practicá con ejercicios de años anteriores.</h2>
         <MarqueeVertical exercises={exercises} />
+      </section>
+      <section className="flex flex-col gap-16 items-center justify-center bg-gradient-to-t from-background3 to-background2 h-screen px-5 ">
+        <h2 className="text-center sm:text-left text-2xl font-semibold text-text1">Monitorea tu evolución a medida que realizas ejercicios</h2>
+        <img src={dashboardImg} alt="dashboard Image" className=" rounded-md border border-border1" />
       </section>
     </main>
   );

@@ -5,7 +5,7 @@ export function StatCard({ title, stat, className, children }) {
         <div className="bg-hover w-10 h-10 rounded-md grid place-items-center">{children}</div>
       </header>
       <footer>
-        <p className="text-text2 font-semibold text-sm">{title.toUpperCase()}</p>
+        <p className="text-text2 font-semibold  text-sm sm:text-md">{title.toUpperCase()}</p>
         <p className="text-3xl font-semibold">{stat}</p>
       </footer>
     </article>

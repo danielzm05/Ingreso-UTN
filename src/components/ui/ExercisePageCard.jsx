@@ -1,4 +1,4 @@
-import { Check, NotebookTextIcon, LightbulbIcon, ChevronRight } from "lucide-react";
+import { Check, NotebookTextIcon, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { PDfViewer } from "./PdfViewer";
 import { Link } from "react-router";
@@ -19,6 +19,7 @@ export function ExercisePageCard({
   hecho = false,
   onChange,
   archivo,
+  autor,
 }) {
   const [showSolution, setShowSolution] = useState(false);
 
@@ -80,7 +81,10 @@ export function ExercisePageCard({
 
       {showSolution && solucion ? (
         <section id="solution" className="max-h-fit py-5 flex justify-between flex-wrap gap-5 border-t border-slate-800">
-          <PDfViewer url={archivo} page={solucion} />
+          <div className="flex flex-col gap-3">
+            <PDfViewer url={archivo} page={solucion} />
+            {autor && <p className="text-text2 text-sm">Realizado por: {autor}</p>}
+          </div>
 
           {formulas.length > 0 && (
             <section>
