@@ -22,7 +22,7 @@ export function Dashboard() {
   const doneTests = () => {
     let count = 0;
     tests.forEach((t) => {
-      if (t.Ejercicio.length === doneExercisesTest(t.Ejercicio)) {
+      if (t.Ejercicio.length === doneExercisesTest(t.Ejercicio) && t.Ejercicio.length > 0) {
         count += 1;
       }
     });

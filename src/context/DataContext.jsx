@@ -70,16 +70,17 @@ export const DataProvider = ({ children }) => {
   const createTest = async (newTest) => {
     const { data: test, error: insertError } = await supabase
       .from("Examen")
-      .insert([{ nombre: newTest.nombre, tema: newTest.tema, fecha: newTest.fecha }])
+      .insert([{ nombre: newTest.nombre, tema: newTest.tema, fecha: newTest.fecha, autor: newTest.autor, descripcion: newTest.descripcion }])
       .select();
 
-    if (insertError) throw error;
+    if (insertError) throw insertError;
 
     const TestFile = await uploadFile(`Archivo_Examen`, newTest.archivo, test[0].id_examen);
     const { error } = await supabase.from("Examen").update({ archivo: TestFile }).eq("id_examen", test[0].id_examen);
 
     if (error) throw error;
 
+    getTests();
     toast.success("Examen creado con éxito");
   };
 

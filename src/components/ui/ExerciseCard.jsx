@@ -4,7 +4,7 @@ import parse from "html-react-parser";
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 
-export function ExerciseCard({ id, id_examen, numero, tema, fecha, examen, consigna, img, categorias = [], hecho }) {
+export function ExerciseCard({ id, id_examen, tema, fecha, examen, consigna, img, categorias = [], hecho }) {
   const renderContent = (htmlString) =>
     parse(htmlString, {
       replace: (domNode) => {

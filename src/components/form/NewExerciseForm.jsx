@@ -86,7 +86,7 @@ export function NewExerciseForm() {
         />
         <Input label="Respuesta" type="text" name="respuesta" required={true} onChange={handleInput} />
 
-        <p className="font-medium italic">
+        <p className="font-medium italic text-text2">
           {"<math>"}
           {formula}
           {"</math>"}
@@ -100,7 +100,7 @@ export function NewExerciseForm() {
         ></math-field>
         <input type="submit" value="Crear" className="p-2 rounded-xl font-semibold w-fit bg-primary text-card cursor-pointer" />
       </form>
-      <PDfViewer url={exFile} page={formValues.solucion ? formValues.solucion : 1} />
+      <PDfViewer url={exFile} page={formValues.solucion} />
     </section>
   );
 }

@@ -28,14 +28,7 @@ export function Examenes() {
           {filteredTests.map((t, i) => (
             <Fragment key={t.id_examen}>
               {t.fecha !== filteredTests[i - 1]?.fecha ? <h2 className="text-text2 font-medium text-lg col-span-full">{t.fecha}</h2> : null}
-              <TestCard
-                id={t.id_examen}
-                nombre={t.nombre}
-                tema={t.tema}
-                fecha={t.fecha}
-                cantEx={t.Ejercicio.length}
-                exDone={doneExercisesTest(t.Ejercicio)}
-              />
+              <TestCard id={t.id_examen} cantEx={t.Ejercicio.length} exDone={doneExercisesTest(t.Ejercicio)} {...t} />
             </Fragment>
           ))}
         </div>
