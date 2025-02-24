@@ -56,7 +56,7 @@ export function NewExerciseForm() {
           </option>
           {tests.map((t) => (
             <option value={t.id_examen} key={t.id_examen}>
-              {t.fecha} {t.nombre} | Tema {t.tema}
+              {t.fecha} {t.descripcion} {t.nombre} | Tema {t.tema}
             </option>
           ))}
         </Select>
@@ -71,6 +71,7 @@ export function NewExerciseForm() {
           name="Tema"
           onChange={(option) => setExTopics(option)}
           placeholder="Selecciona el tema del ejercicio"
+          style="text-sm font-medium bg-card border border-border1 rounded-md min-h-9"
         />
 
         <Input label="Imagen consigna" type="file" name="img" onChange={handleImg} />
@@ -83,6 +84,7 @@ export function NewExerciseForm() {
           name="Formula"
           onChange={(option) => setExFormulas(option)}
           placeholder="Selecciona las formulas utilizadas"
+          style="text-sm font-medium bg-card border border-border1 rounded-md min-h-9"
         />
         <Input label="Respuesta" type="text" name="respuesta" required={true} onChange={handleInput} />
 
@@ -100,7 +102,7 @@ export function NewExerciseForm() {
         ></math-field>
         <input type="submit" value="Crear" className="p-2 rounded-xl font-semibold w-fit bg-primary text-card cursor-pointer" />
       </form>
-      <PDfViewer url={exFile} page={formValues.solucion} />
+      <PDfViewer url={exFile} />
     </section>
   );
 }

@@ -35,7 +35,7 @@ export function TestPage() {
               {tests[0].nombre} {tests[0].fecha}
             </h1>
             <p className="text-gray-500 font-semibold">
-              {tests[0].tema ? `Tema: ${tests[0].tema}` : ""} {tests[0].descripcion}
+              {tests[0].descripcion} {tests[0].tema && `| Tema: ${tests[0].tema}`}
             </p>
           </header>
 
