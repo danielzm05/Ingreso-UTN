@@ -13,6 +13,7 @@ import { useAuthContext } from "./context/AuthContext";
 import { Route, Routes } from "react-router";
 import { ToasterContainer } from "./components/ui/Toaster";
 import { Header } from "./components/ui/header/Header";
+import { ProfilePage } from "./pages/ProfilePage";
 import { pdfjs } from "react-pdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
@@ -23,9 +24,10 @@ function App() {
     <>
       <Header />
       <Routes>
+        <Route path="*" element={<NotFound />}></Route>
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/ejercicios" element={<Ejercicios />}></Route>
-        <Route path="*" element={<NotFound />}></Route>
+        <Route path="/profile" element={<ProfilePage />}></Route>
         <Route path="/examenes" element={<Examenes />}></Route>
         <Route path="/ingresar" element={<LoginPage />}></Route>
         <Route path="/registrarse" element={<SignupPage />}></Route>

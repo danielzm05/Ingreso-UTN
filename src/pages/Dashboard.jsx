@@ -8,26 +8,15 @@ import { StatCard } from "../components/ui/StatCard";
 import { Shuffle } from "lucide-react";
 import { Button } from "../components/ui/Button";
 export function Dashboard() {
-  const { getDoneExercises, doneExercises, getRandomEx, randomEx, getTests, tests, doneExercisesTest } = useDataContext();
+  const { getDoneExercises, doneExercises, getRandomEx, randomEx, getDoneTests } = useDataContext();
 
   useEffect(() => {
     getDoneExercises();
     getRandomEx();
-    getTests();
   }, []);
 
   const today = new Date().toISOString().split("T")[0];
   const exercisesToday = doneExercises.filter((e) => e.fecha.split("T")[0] === today);
-
-  const doneTests = () => {
-    let count = 0;
-    tests.forEach((t) => {
-      if (t.Ejercicio.length === doneExercisesTest(t.Ejercicio) && t.Ejercicio.length > 0) {
-        count += 1;
-      }
-    });
-    return count;
-  };
 
   return (
     <main className="flex flex-col gap-3 py-5 sm:px-5 px-2 bg-gradient-to-t from-background3 to-background">
@@ -54,7 +43,7 @@ export function Dashboard() {
           <CircleCheckBig size={24} />
         </StatCard>
 
-        <StatCard title="Examenes Completados" stat={doneTests()} className={"col-span-full sm:col-span-1 border-l-4 border-[#FF1E61]"}>
+        <StatCard title="Examenes Completados" stat={getDoneTests()} className={"col-span-full sm:col-span-1 border-l-4 border-[#FF1E61]"}>
           <FileBadge size={24} />
         </StatCard>
 

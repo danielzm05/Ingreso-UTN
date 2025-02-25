@@ -67,6 +67,26 @@ export const DataProvider = ({ children }) => {
     return count;
   };
 
+  const deleteProgress = async () => {
+    const { error } = await supabase.from("Ejercicio_Completado").delete().eq("id_usuario", user?.id);
+    if (error) throw error;
+
+    getDoneExercises();
+    getTests();
+    toast.success("Progreso reiniciado");
+  };
+
+  const getDoneTests = () => {
+    getTests();
+    let count = 0;
+    tests.forEach((t) => {
+      if (t.Ejercicio.length === doneExercisesTest(t.Ejercicio) && t.Ejercicio.length > 0) {
+        count += 1;
+      }
+    });
+    return count;
+  };
+
   const createTest = async (newTest) => {
     const { data: test, error: insertError } = await supabase
       .from("Examen")
@@ -109,7 +129,7 @@ export const DataProvider = ({ children }) => {
     }
 
     if (checked) {
-      const { data, error } = await supabase.from("Ejercicio_Completado").insert([{ id_ejercicio: id_ejercicio, id_usuario: id_usuario }]);
+      const { error } = await supabase.from("Ejercicio_Completado").insert([{ id_ejercicio: id_ejercicio, id_usuario: id_usuario }]);
 
       if (error) throw error;
       toast.success("Nuevo ejercicio completado!");
@@ -180,6 +200,8 @@ export const DataProvider = ({ children }) => {
         getDoneExercises,
         getRandomEx,
         doneExercisesTest,
+        getDoneTests,
+        deleteProgress,
       }}
     >
       {children}
