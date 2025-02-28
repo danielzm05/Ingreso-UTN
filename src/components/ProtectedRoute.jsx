@@ -1,20 +1,9 @@
 import { Navigate, Outlet } from "react-router";
-import { useState, useEffect } from "react";
 
-export function ProtectedRoute({ isAuth, roles, children, redirectTo = "/", userRol }) {
-  const [loading, setLoading] = useState(true);
+export function ProtectedRoute({ isAuth, roles = [], children, redirectTo = "/", userRol = [] }) {
+  const hasRole = roles.some((role) => userRol.includes(role));
 
-  useEffect(() => {
-    if (isAuth !== undefined && userRol !== undefined) {
-      setLoading(false);
-    }
-  }, [isAuth, userRol]);
-
-  if (loading) {
-    return <div>Cargando...</div>;
-  }
-
-  if (isAuth && roles.includes(userRol)) {
+  if (isAuth && hasRole) {
     return children ? children : <Outlet />;
   } else {
     return <Navigate to={redirectTo} />;

@@ -96,7 +96,6 @@ export const AuthProvider = ({ children }) => {
       setUser(data.user);
       getUserInfo(data.user.id);
     } else {
-      navigate("/", { replace: true });
       setUser(null);
       setUserInfo(null);
     }
