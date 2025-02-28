@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { Radical, FileText, ChartColumn } from "lucide-react";
+import { Radical, FileText, ChartColumn, UserIcon } from "lucide-react";
 
 export const HeaderItems = ({ isLogged, className }) => {
   return (
@@ -18,12 +18,20 @@ export const HeaderItems = ({ isLogged, className }) => {
       </NavLink>
 
       {isLogged ? (
-        <NavLink to="/dashboard">
-          <li className="flex items-center gap-1 outline-none">
-            <ChartColumn size={18} />
-            Dashboard
-          </li>
-        </NavLink>
+        <>
+          <NavLink to="/dashboard">
+            <li className="flex items-center gap-1 outline-none">
+              <ChartColumn size={18} />
+              Dashboard
+            </li>
+          </NavLink>
+          <NavLink to="/profile">
+            <li className="flex items-center gap-1 outline-none">
+              <UserIcon size={18} />
+              Perfil
+            </li>
+          </NavLink>
+        </>
       ) : null}
     </ul>
   );

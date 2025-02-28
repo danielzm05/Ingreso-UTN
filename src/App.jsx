@@ -4,6 +4,7 @@ import { TestPage } from "./pages/TestPage";
 import { LoginPage } from "./pages/LoginPage";
 import { SignupPage } from "./pages/SignupPage";
 import { LandingPage } from "./pages/LandingPage";
+import { UpdatePasswordPage } from "./pages/UpdatePasswordPage";
 import { AdminPage } from "./pages/AdminPage";
 import { ExercisePage } from "./pages/ExercisePage";
 import { Dashboard } from "./pages/Dashboard";
@@ -32,7 +33,10 @@ function App() {
         <Route path="/ingresar" element={<LoginPage />}></Route>
         <Route path="/registrarse" element={<SignupPage />}></Route>
         <Route path="/admin" element={<AdminPage />}></Route>
-        <Route path="/dashboard" element={<Dashboard />}></Route>
+        <Route element={<ProtectedRoute isAuth={user?.aud} roles={[2, 1]} userRol={userInfo?.usuario_rol.map((rol) => rol.id_rol)} redirectTo="/" />}>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="/update-password" element={<UpdatePasswordPage />}></Route>
+        </Route>
         <Route element={<ProtectedRoute isAuth={user?.aud} roles={[1]} userRol={userInfo?.usuario_rol.map((rol) => rol.id_rol)} redirectTo="/" />}>
           <Route path="/admin" element={<AdminPage />}></Route>
         </Route>

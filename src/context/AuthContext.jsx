@@ -52,8 +52,28 @@ export const AuthProvider = ({ children }) => {
     navigate("/");
   };
 
+  const updatePassword = async (new_password) => {
+    const { error } = await supabase.auth.updateUser({
+      password: new_password,
+    });
+    if (error) {
+      toast.error("Error al cambiar la contraseña");
+    } else {
+      toast.success("Contraseña cambiada correctamente");
+    }
+  };
+
+  const resetPasswordEmail = async (email) => {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: "https://utn-ingreso.pro/update-password",
+    });
+
+    if (error) throw error;
+    toast("Se ha enviado un email con las instrucciones para cambiar la contraseña", { icon: "📩", duration: 5000 });
+  };
+
   async function signInWithGithub() {
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: "github",
       options: {
         redirectTo: "https://utn-ingreso.pro/",
@@ -96,7 +116,9 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, userInfo, userEvent, getUserInfo, logOut, signUp, signIn, signInWithGithub }}>
+    <AuthContext.Provider
+      value={{ user, userInfo, userEvent, getUserInfo, logOut, signUp, signIn, signInWithGithub, updatePassword, resetPasswordEmail }}
+    >
       {children}
     </AuthContext.Provider>
   );
