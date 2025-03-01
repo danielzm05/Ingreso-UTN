@@ -18,7 +18,7 @@ export function NewExerciseForm() {
     descripcion: "",
     respuesta: "",
     img: "",
-    solucion: "",
+    solucion: null,
   });
 
   useEffect(() => {
@@ -75,7 +75,7 @@ export function NewExerciseForm() {
         />
 
         <Input label="Imagen consigna" type="file" name="img" onChange={handleImg} />
-        <Input label="Numero de Pagina" type="number" name="solucion" onChange={handleInput} required={true} />
+        <Input label="Numero de Pagina" type="number" name="solucion" onChange={handleInput} />
 
         <SelectMultiple
           value={(option) => option.id_formula}
