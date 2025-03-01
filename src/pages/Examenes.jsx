@@ -13,11 +13,11 @@ export function Examenes() {
     getTests();
   }, []);
 
-  const filteredTests = tests.filter((e) => {
+  const filteredTests = tests.filter((t) => {
     const search = searchTerm.toLowerCase().trim();
-    const year = e.fecha?.toString();
+    const year = t.fecha?.toString();
 
-    return e.nombre.toLowerCase().includes(search) || (year && search.includes(year));
+    return t.Examen_Categoria.categoria.toLowerCase().includes(search) || (year && search.includes(year));
   });
 
   return (
@@ -30,7 +30,13 @@ export function Examenes() {
             {filteredTests.map((t, i) => (
               <Fragment key={t.id_examen}>
                 {t.fecha !== filteredTests[i - 1]?.fecha ? <h2 className="text-text2 font-medium text-lg col-span-full">{t.fecha}</h2> : null}
-                <TestCard id={t.id_examen} cantEx={t.Ejercicio.length} exDone={doneExercisesTest(t.Ejercicio)} {...t} />
+                <TestCard
+                  id={t.id_examen}
+                  cantEx={t.Ejercicio.length}
+                  exDone={doneExercisesTest(t.Ejercicio)}
+                  nombre={t.Examen_Categoria.categoria}
+                  {...t}
+                />
               </Fragment>
             ))}
           </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDataContext } from "../../context/DataContext";
 import { Input } from "./Input";
+import { Select } from "./Select";
 
 export function NewTestForm() {
   const { createTest } = useDataContext();
@@ -10,6 +11,7 @@ export function NewTestForm() {
     descripcion: "",
     fecha: "",
     autor: "",
+    categoria: null,
   });
 
   const handleInput = (e) => {
@@ -31,12 +33,26 @@ export function NewTestForm() {
   return (
     <form id="test-form" onSubmit={handleSubmit} className="grid sm:grid-cols-3 gap-3">
       <Input label="Año" type="number" name="fecha" required={true} onChange={handleInput} />
-      <Input label="Nombre" type="text" name="nombre" required={true} onChange={handleInput} />
-      <Input label="Descripción" type="text" name="descripcion" onChange={handleInput} />
-      <Input label="Tema" type="number" name="tema" onChange={handleInput} />
+      <Select label="Categoria:" name="categoria" required={true} id="categoria" onChange={handleInput} defaultValue="">
+        <option disabled value="">
+          Selecciona categoria del examen
+        </option>
+        <option value={1} key={1}>
+          Primer Parcial
+        </option>
+        <option value={2} key={2}>
+          Segundo Parcial
+        </option>
+        <option value={3} key={3}>
+          Final
+        </option>
+      </Select>
+      <Input label="Mes:" type="text" name="mes" onChange={handleInput} />
+      <Input label="Descripción:" type="text" name="descripcion" onChange={handleInput} />
+      <Input label="Tema:" type="number" name="tema" onChange={handleInput} />
 
-      <Input label="Autor" type="text" name="autor" onChange={handleInput} />
-      <Input label="PDF" type="file" name="archivo" onChange={handleFile} />
+      <Input label="Autor:" type="text" name="autor" onChange={handleInput} />
+      <Input label="PDF:" type="file" name="archivo" onChange={handleFile} />
 
       <input type="submit" value="Crear" className="p-2 rounded-xl font-semibold w-fit bg-primary text-card cursor-pointer" />
     </form>

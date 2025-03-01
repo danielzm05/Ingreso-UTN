@@ -28,14 +28,16 @@ export const DataProvider = ({ children }) => {
   const getTests = async (id) => {
     let query = supabase
       .from("Examen")
-      .select("*, Ejercicio(*, Ejercicio_Completado(*))")
+      .select("*, Examen_Categoria (*),Ejercicio(*, Ejercicio_Completado(*))")
       .order("numero", { referencedTable: "Ejercicio", ascending: true })
       .order("fecha", { ascending: false });
     if (id) {
       query = query.eq("id_examen", id);
     }
+
     const { data, error } = await query;
     if (error) throw error;
+    console.log(data);
     setTests(data);
   };
 
@@ -90,7 +92,16 @@ export const DataProvider = ({ children }) => {
   const createTest = async (newTest) => {
     const { data: test, error: insertError } = await supabase
       .from("Examen")
-      .insert([{ nombre: newTest.nombre, tema: newTest.tema, fecha: newTest.fecha, autor: newTest.autor, descripcion: newTest.descripcion }])
+      .insert([
+        {
+          mes: newTest.mes,
+          tema: newTest.tema,
+          fecha: newTest.fecha,
+          autor: newTest.autor,
+          descripcion: newTest.descripcion,
+          id_examen_categoria: newTest.categoria,
+        },
+      ])
       .select();
 
     if (insertError) throw insertError;
