@@ -37,7 +37,6 @@ export const DataProvider = ({ children }) => {
 
     const { data, error } = await query;
     if (error) throw error;
-    console.log(data);
     setTests(data);
   };
 

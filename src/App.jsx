@@ -16,6 +16,7 @@ import { ToasterContainer } from "./components/ui/Toaster";
 import { Header } from "./components/ui/header/Header";
 import { ProfilePage } from "./pages/ProfilePage";
 import { pdfjs } from "react-pdf";
+import { PageTracker } from "./components/PageTracker";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.mjs", import.meta.url).toString();
 
@@ -24,6 +25,7 @@ function App() {
   return (
     <>
       <Header />
+      <PageTracker />
       <Routes>
         <Route path="*" element={<NotFound />}></Route>
         <Route path="/" element={<LandingPage />}></Route>

@@ -2,6 +2,7 @@ import { useEffect, useState, createContext, useContext } from "react";
 import { supabase } from "../backend/client";
 import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
+import posthog from "posthog-js";
 
 export const AuthContext = createContext(null);
 
@@ -19,6 +20,7 @@ export const AuthProvider = ({ children }) => {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
     setUser(null);
+    posthog.reset();
   };
 
   const signUp = async (nombre, email, password) => {
@@ -95,6 +97,11 @@ export const AuthProvider = ({ children }) => {
     if (data.user) {
       setUser(data.user);
       getUserInfo(data.user.id);
+
+      posthog.identify(data.user.id, {
+        email: data.user.email,
+        nombre: data.user.user_metadata?.nombre || "Sin nombre",
+      });
     } else {
       setUser(null);
       setUserInfo(null);

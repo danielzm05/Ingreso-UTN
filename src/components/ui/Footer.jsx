@@ -1,4 +1,5 @@
 import { NavLink } from "react-router";
+import { CafecitoButton } from "./CafecitoButton";
 
 export function Footer() {
   return (
@@ -11,13 +12,7 @@ export function Footer() {
           Con tu aporte nos ayudas a que el proyecto crezca y <br />
           mejore cada día.
         </p>
-        <a href="https://cafecito.app/utn-ingreso" rel="noopener" target="_blank">
-          <img
-            srcset="https://cdn.cafecito.app/imgs/buttons/button_5.png 1x, https://cdn.cafecito.app/imgs/buttons/button_5_2x.png 2x, https://cdn.cafecito.app/imgs/buttons/button_5_3.75x.png 3.75x"
-            src="https://cdn.cafecito.app/imgs/buttons/button_5.png"
-            alt="Invitame un café en cafecito.app"
-          />
-        </a>
+        <CafecitoButton />
       </div>
       <nav className="flex flex-col gap-2 text-sm text-text2 font-semibold border-l px-4 border-border1">
         <NavLink to="/">Inicio</NavLink>
