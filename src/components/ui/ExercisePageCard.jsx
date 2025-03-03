@@ -49,14 +49,14 @@ export function ExercisePageCard({
           </a>
         )}
 
-        <footer className="min-w-full flex justify-between mt-6">
-          <p className="text-end font-semibold text-text1">RTA: {renderContent(respuesta ? respuesta : "")}</p>
+        <footer className="min-w-full flex justify-between mt-6 ">
+          <p className="text-end font-semibold text-text2">RTA: {renderContent(respuesta ? respuesta : "")}</p>
           <div className="flex gap-4 text-gray-500 font-medium">
             <div className="flex items-center gap-1  ">
               <label className="flex items-center cursor-pointer relative" htmlFor="check-2">
                 <input
                   onChange={onChange}
-                  checked={hecho}
+                  defaultChecked={hecho}
                   type="checkbox"
                   className="peer h-4 w-4 cursor-pointer appearance-none rounded-full bg-transparent border-2 border-gray-500 checked:bg-primary checked:border-primary transition ease-in duration-300"
                   id="check-2"
@@ -80,30 +80,28 @@ export function ExercisePageCard({
       </section>
 
       {showSolution && solucion ? (
-        <section id="solution" className="max-h-fit py-5 flex justify-between flex-wrap gap-5 border-t border-slate-800">
-          <div className="flex flex-col gap-3">
-            <PDfViewer url={archivo} page={solucion} />
-            {autor && <p className="text-text2 text-sm">Realizado por: {autor}</p>}
-          </div>
-
+        <section id="solution" className="min-h-[60vh] max-h-fit py-5 flex justify-between flex-wrap gap-5 border-t border-border1 ">
           {formulas.length > 0 && (
             <section>
-              <h2 className="text-md font-semibold mb-2 text-text1 ">Formulas Utilizadas:</h2>
-              <ul className="flex flex-col gap-3 list-none">
+              <h2 className="text-md font-semibold mb-2 text-text1 ">Formulas Utilizadas</h2>
+              <ul className="flex flex-col list-none">
                 {formulas.map((f) => (
-                  <li className="hover:bg-slate-800 hover:text-white rounded-lg transition duration-300 ease-in-out">
-                    <a href={f.Formula.link} target="_blank" className="flex flex-col text-sm p-1 gap-2">
-                      <span className="flex gap-1 items-center font-semibold text-text1">
-                        <ChevronRight size={14} />
-                        {f.Formula.nombre}
+                  <li className="hover:bg-slate-800 hover:text-white rounded-lg transition duration-300 ease-in-out" key={f.Formula.id_formula}>
+                    <a href={f.Formula.link} target="_blank" className="flex justify-between text-sm py-2 gap-1">
+                      <span className="flex gap-1 items-center font-semibold text-text2">
+                        <ChevronRight size={14} /> {f.Formula.nombre.toUpperCase()}
                       </span>
-                      <span className="pl-5 text-gray-500">{renderContent(f.Formula.formula)}</span>
+                      <span className="pl-5 text-[16px] text-text1">{renderContent(f.Formula.formula)}</span>
                     </a>
                   </li>
                 ))}
               </ul>
             </section>
           )}
+          <div className="flex flex-col gap-3">
+            <PDfViewer url={archivo} page={solucion} />
+            {autor && <p className="text-text2 text-sm">Realizado por: {autor}</p>}
+          </div>
         </section>
       ) : null}
     </article>

@@ -37,7 +37,7 @@ export function Ejercicios() {
               id={ex.id_ejercicio}
               id_examen={ex.Examen.id_examen}
               fecha={ex.Examen.fecha}
-              examen={ex.Examen.nombre}
+              examen={ex.Examen.Examen_Categoria.categoria + " " + ex.Examen.mes}
               tema={ex.Examen.tema}
               categorias={ex.Ejercicio_Tema}
               hecho={user ? ex.Ejercicio_Completado.some((e) => e.id_usuario === user?.id && e.id_ejercicio === ex.id_ejercicio) : false}

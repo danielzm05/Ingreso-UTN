@@ -179,7 +179,7 @@ export const DataProvider = ({ children }) => {
   const getExercises = async (id) => {
     let query = supabase
       .from("Ejercicio")
-      .select(` *, Examen(*), Ejercicio_Tema ( Tema(*) ), Ejercicio_Formula ( Formula(*) ), Ejercicio_Completado(*)`);
+      .select(` *, Examen(* , Examen_Categoria(*)), Ejercicio_Tema ( Tema(*) ), Ejercicio_Formula ( Formula(*) ), Ejercicio_Completado(*)`);
 
     if (id) {
       query = query.eq("id_ejercicio", id);
@@ -187,7 +187,6 @@ export const DataProvider = ({ children }) => {
 
     const { data, error } = await query;
     if (error) throw error;
-
     setExercises(data);
   };
 

@@ -6,19 +6,31 @@ export function MarqueeVertical({ exercises }) {
   const secondRow = exercises?.slice(-5);
 
   return (
-    <div className="relative flex h-[500px] w-full flex-row items-center justify-center overflow-hidden ">
-      <Marquee pauseOnHover vertical className="[--duration:20s] hidden sm:flex">
+    <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden ">
+      <Marquee pauseOnHover className="[--duration:60s] [&_article]:max-w-[350px] [&_article]:border [&_article]:border-border1 ">
         {firstRow?.map((ex) => (
-          <ExerciseCard key={ex?.id_ejercicio} id={ex?.id_ejercicio} {...ex} />
+          <ExerciseCard
+            key={ex?.id_ejercicio}
+            id={ex?.id_ejercicio}
+            examen={ex.Examen.Examen_Categoria.categoria + " " + ex.Examen.mes}
+            fecha={ex.Examen.fecha}
+            {...ex}
+          />
         ))}
       </Marquee>
-      <Marquee reverse pauseOnHover vertical className="[--duration:20s]">
+      <Marquee reverse pauseOnHover className="[--duration:60s] [&_article]:max-w-[350px] [&_article]:border [&_article]:border-border1">
         {secondRow?.map((ex) => (
-          <ExerciseCard key={ex?.id_ejercicio} id={ex?.id_ejercicio} {...ex} />
+          <ExerciseCard
+            key={ex?.id_ejercicio}
+            id={ex?.id_ejercicio}
+            examen={ex.Examen.Examen_Categoria.categoria + " " + ex.Examen.mes}
+            fecha={ex.Examen.fecha}
+            {...ex}
+          />
         ))}
       </Marquee>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-background3"></div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background2"></div>
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-transparent"></div>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-transparent"></div>
     </div>
   );
 }

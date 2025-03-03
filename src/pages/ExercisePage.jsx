@@ -31,7 +31,7 @@ export function ExercisePage() {
             autor={exercises[0]?.Examen.autor}
             numero={exercises[0]?.numero}
             fecha={exercises[0]?.Examen.fecha}
-            nombre={exercises[0]?.Examen.nombre}
+            nombre={exercises[0]?.Examen.Examen_Categoria.categoria + " " + exercises[0]?.Examen.mes}
             id_examen={exercises[0]?.Examen.id_examen}
             archivo={exercises[0]?.Examen.archivo}
             formulas={exercises[0]?.Ejercicio_Formula}
