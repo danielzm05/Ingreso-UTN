@@ -51,13 +51,13 @@ export function LandingPage() {
 
           <img src={ExercisePageCardImg} alt="dashboard Image" className="max-h-[80vh]" />
         </section>
-        <section className="flex flex-col gap-8 items-center justify-center bg-gradient-to-t from-background2 to-green-900 via-background2 h-[80vh] sm:h-screen px-2 py-20 sm:py-30">
+        <section className="flex flex-col gap-8 items-center justify-center bg-gradient-to-t from-background2 to-green-900 via-background2 h-[60vh] sm:h-screen px-2 py-10 sm:py-20">
           <div className="*:text-center flex justify-center items-center flex-col gap-3 px-5 ">
             <h2 className="flex flex-col sm:flex-row gap-3 text-nowrap items-center text-3xl sm:text-4xl font-semibold text-text1">
               <TrendingUp size={26} />
               Monitorea tu evolución
             </h2>
-            <p className="text-text2 text-sm sm:text-[1rem] ">A medida que realizas ejercicios podrás ver tu progreso tu dashboard.</p>
+            <p className="text-text2 text-sm sm:text-[1rem] ">A medida que realizas ejercicios podrás ver tu progreso en el dashboard.</p>
           </div>
 
           <img src={dashboardImg} alt="dashboard Image" className="w-full sm:max-w-[1000px] " />
