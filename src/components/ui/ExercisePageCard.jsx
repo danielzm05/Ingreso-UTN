@@ -1,4 +1,4 @@
-import { Check, NotebookTextIcon, ChevronRight } from "lucide-react";
+import { Check, EyeIcon, EyeClosedIcon, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { PDfViewer } from "./PdfViewer";
 import { Link } from "react-router";
@@ -21,7 +21,7 @@ export function ExercisePageCard({
   archivo,
   autor,
 }) {
-  const [showSolution, setShowSolution] = useState(false);
+  const [showSolution, setShowSolution] = useState(true);
 
   const renderContent = (htmlString) =>
     parse(htmlString, {
@@ -58,12 +58,16 @@ export function ExercisePageCard({
                   onChange={onChange}
                   defaultChecked={hecho}
                   type="checkbox"
-                  className="peer h-4 w-4 cursor-pointer appearance-none rounded-full bg-transparent border-2 border-gray-500 checked:bg-primary checked:border-primary transition ease-in duration-300"
+                  className={`peer h-4 w-4 cursor-pointer appearance-none rounded-full border-2 ${
+                    hecho ? "bg-primary border-primary" : "bg-transparent border-gray-500 "
+                  } transition ease-in duration-300`}
                   id="check-2"
                 />
-                <span className="absolute text-background opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <Check size={14} strokeWidth={3} />
-                </span>
+                {hecho && (
+                  <span className="absolute text-background opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
+                    <Check size={14} strokeWidth={3} />
+                  </span>
+                )}
               </label>
               <label className={`cursor-pointer ${hecho ? "text-primary" : "text-gray-500"} transition ease-in duration-300`} htmlFor="check-2">
                 {hecho ? "Completado" : "Incompleto"}
@@ -72,7 +76,7 @@ export function ExercisePageCard({
 
             {solucion && (
               <a href="#solution" title="Ver Solución" onClick={() => setShowSolution(!showSolution)} className="grid place-content-center">
-                <NotebookTextIcon size={18} />
+                {showSolution ? <EyeIcon size={18} /> : <EyeClosedIcon size={20} />}
               </a>
             )}
           </div>
