@@ -6,7 +6,7 @@ export function TestCard({ id, fecha, nombre, mes, tema, descripcion, cantEx, ex
     <Link to={`/Examenes/${id}`}>
       <article className="h-32 flex flex-col py-5 bg-card rounded-xl cursor-pointer hover:bg-hover transition duration-300 ease-in-out">
         <div className="flex gap-4 items-center">
-          <div className={`min-w-1 h-4 rounded-r-sm`}></div>
+          <div className="min-w-1 h-4 rounded-r-sm" style={{ background: color }}></div>
 
           <h1 className="text-lg text-start font-semibold text-text1">
             {nombre} {mes} {fecha}

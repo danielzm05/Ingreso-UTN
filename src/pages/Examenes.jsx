@@ -13,7 +13,23 @@ export function Examenes() {
     getTests();
   }, []);
 
-  const filteredTests = tests.filter((t) => {
+  const orderTests = tests.sort((a, b) => {
+    if (a.fecha > b.fecha) {
+      return -1;
+    } else if (a.fecha < b.fecha) {
+      return 1;
+    }
+
+    if (a.Examen_Categoria.categoria > b.Examen_Categoria.categoria) {
+      return 1;
+    } else if (a.Examen_Categoria.categoria < b.Examen_Categoria.categoria) {
+      return -1;
+    }
+
+    return 0;
+  });
+
+  const filteredTests = orderTests.filter((t) => {
     const search = searchTerm.toLowerCase().trim();
     const year = t.fecha?.toString();
 
@@ -35,6 +51,7 @@ export function Examenes() {
                   cantEx={t.Ejercicio.length}
                   exDone={doneExercisesTest(t.Ejercicio)}
                   nombre={t.Examen_Categoria.categoria}
+                  color={t.Examen_Categoria.color}
                   {...t}
                 />
               </Fragment>

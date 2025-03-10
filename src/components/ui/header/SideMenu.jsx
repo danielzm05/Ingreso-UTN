@@ -11,10 +11,7 @@ export const SideMenu = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      console.log(event.target);
-
       if (!sideBarRef.current.contains(event.target)) {
-        console.log("onCLise");
         onClose();
       }
     };
