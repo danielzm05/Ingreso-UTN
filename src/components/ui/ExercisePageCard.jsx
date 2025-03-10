@@ -12,7 +12,8 @@ export function ExercisePageCard({
   img,
   numero,
   fecha = "",
-  nombre,
+  categoria = "",
+  mes = "",
   solucion,
   formulas,
   id_examen,
@@ -38,7 +39,7 @@ export function ExercisePageCard({
         <header>
           <Link to={`/examenes/${id_examen}`}>
             <p className="text-gray-500 font-semibold no-underline hover:underline">
-              {fecha ? fecha : null} {nombre} {numero ? `Ejercicio: ${numero}` : null}
+              {fecha} {categoria} {mes} {numero ? `Ejercicio: ${numero}` : null}
             </p>
           </Link>
         </header>

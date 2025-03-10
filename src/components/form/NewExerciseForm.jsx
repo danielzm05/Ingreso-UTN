@@ -56,7 +56,7 @@ export function NewExerciseForm() {
           </option>
           {tests.map((t) => (
             <option value={t.id_examen} key={t.id_examen}>
-              {t.fecha} {t.descripcion} {t.nombre} | Tema {t.tema}
+              {t.fecha} {t.Examen_Categoria.categoria} {t.mes} {t.descripcion} | Tema {t.tema}
             </option>
           ))}
         </Select>

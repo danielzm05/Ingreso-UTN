@@ -27,7 +27,6 @@ export function TestPage() {
       },
     });
 
-  console.log(tests);
   return (
     <>
       <main className="min-h-[90vh] grid  bg-gradient-to-t from-background3 to-background">
