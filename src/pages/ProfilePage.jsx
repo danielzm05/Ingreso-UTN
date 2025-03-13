@@ -1,12 +1,14 @@
 import { useAuthContext } from "@/context/AuthContext";
 import { useDataContext } from "@/context/DataContext";
+import { useTestContext } from "@/context/TestContext";
 import { UserIcon, ChartLine, KeyRound } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useEffect } from "react";
 
 export function ProfilePage() {
   const { user } = useAuthContext();
-  const { getDoneExercises, doneExercises, getDoneTests, deleteProgress } = useDataContext();
+  const { getDoneTests } = useTestContext();
+  const { getDoneExercises, doneExercises, deleteProgress } = useDataContext();
   const { resetPasswordEmail } = useAuthContext();
   useEffect(() => {
     getDoneExercises();

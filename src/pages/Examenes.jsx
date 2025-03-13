@@ -1,13 +1,14 @@
 import { SearchBar } from "../components/ui/SearchBar";
 import { TestCard } from "../components/ui/TestCard";
 import { useDataContext } from "../context/DataContext";
+import { useTestContext } from "../context/TestContext";
 import { Fragment } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Footer } from "@/components/ui/Footer";
 
 export function Examenes() {
-  const { tests, getTests, doneExercisesTest } = useDataContext();
-  const [searchTerm, setSearchTerm] = useState(" ");
+  const { tests, getTests, doneExercisesTest} = useTestContext();
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     getTests();
@@ -29,17 +30,14 @@ export function Examenes() {
     return 0;
   });
 
-  const filteredTests = orderTests.filter((t) => {
-    const search = searchTerm.toLowerCase().trim();
-    const year = t.fecha?.toString();
-
-    return t.Examen_Categoria.categoria.toLowerCase().includes(search) || (year && search.includes(year));
-  });
+  const filteredTests = useMemo(()=>{
+    return orderTests.filter((test) => test.Examen_Categoria.categoria.toLowerCase().includes(search.toLowerCase()));
+  }, [tests, search]);
 
   return (
     <>
       <main className="min-h-[90vh] flex flex-col gap-3 p-3 sm:p-10 bg-gradient-to-t from-background3 to-background">
-        <SearchBar placeholder="Buscar examen..." onSearch={(query) => setSearchTerm(query)} />
+        <SearchBar placeholder="Buscar examen..." onSearch={(query) => setSearch(query)} />
 
         {filteredTests.length > 0 ? (
           <div className="grid gap-3 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">

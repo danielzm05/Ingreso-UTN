@@ -7,7 +7,6 @@ import { useAuthContext } from "../../../context/AuthContext";
 export const SideMenu = ({ isOpen, onClose }) => {
   const { user } = useAuthContext();
   let sideBarRef = useRef();
-  console.log(sideBarRef?.current);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

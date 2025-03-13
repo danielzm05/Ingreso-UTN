@@ -1,10 +1,10 @@
+import {useTestContext} from "../../context/TestContext";
 import { useState } from "react";
-import { useDataContext } from "../../context/DataContext";
 import { Input } from "./Input";
 import { Select } from "./Select";
 
 export function NewTestForm() {
-  const { createTest } = useDataContext();
+  const { createTest } = useTestContext();
   const [formValues, setFormValues] = useState({
     tema: null,
     archivo: "",

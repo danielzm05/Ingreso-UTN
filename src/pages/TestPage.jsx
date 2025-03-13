@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { ExerciseTestCard } from "../components/ui/ExerciseTestCard";
-import { useDataContext } from "../context/DataContext";
 import { useAuthContext } from "../context/AuthContext";
+import { useTestContext } from "../context/TestContext";
 import { FileTextIcon } from "lucide-react";
 import { Footer } from "@/components/ui/Footer";
 import parse from "html-react-parser";
@@ -11,7 +11,7 @@ import "katex/dist/katex.min.css";
 
 export function TestPage() {
   const { user } = useAuthContext();
-  const { tests, getTests } = useDataContext();
+  const { tests, getTests } = useTestContext();
   const { id_examen } = useParams();
 
   useEffect(() => {

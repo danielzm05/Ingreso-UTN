@@ -1,7 +1,8 @@
 import { useContext, createContext, useState } from "react";
 import { supabase } from "../backend/client";
-import toast from "react-hot-toast";
 import { useAuthContext } from "./AuthContext";
+import { useTestContext} from "./TestContext.jsx";
+import toast from "react-hot-toast";
 
 const DataContext = createContext();
 
@@ -11,10 +12,10 @@ export const useDataContext = () => {
 
 export const DataProvider = ({ children }) => {
   const { user } = useAuthContext();
+  const { getTests,  uploadFile } = useTestContext();
   const [exercises, setExercises] = useState([]);
   const [randomEx, setRandomEx] = useState([]);
   const [doneExercises, setDoneExercises] = useState([]);
-  const [tests, setTests] = useState([]);
   const [topics, setTopics] = useState([]);
   const [formulas, setFormulas] = useState([]);
 
@@ -23,20 +24,6 @@ export const DataProvider = ({ children }) => {
     const { data, error } = await supabase.rpc(SQLfunction, { id: user?.id });
     if (error) throw error;
     setRandomEx(data[0]);
-  };
-
-  const getTests = async (id) => {
-    let query = supabase
-      .from("Examen")
-      .select("*, Examen_Categoria (*),Ejercicio(*, Ejercicio_Completado(*))")
-      .order("numero", { referencedTable: "Ejercicio", ascending: true });
-    if (id) {
-      query = query.eq("id_examen", id);
-    }
-
-    const { data, error } = await query;
-    if (error) throw error;
-    setTests(data);
   };
 
   const getTopics = async () => {
@@ -57,15 +44,6 @@ export const DataProvider = ({ children }) => {
     setDoneExercises(data);
   };
 
-  const doneExercisesTest = (exercises) => {
-    let count = 0;
-    exercises.forEach((e) => {
-      if (e.Ejercicio_Completado.some((ec) => ec.id_usuario === user?.id)) {
-        count += 1;
-      }
-    });
-    return count;
-  };
 
   const deleteProgress = async () => {
     const { error } = await supabase.from("Ejercicio_Completado").delete().eq("id_usuario", user?.id);
@@ -74,55 +52,6 @@ export const DataProvider = ({ children }) => {
     getDoneExercises();
     getTests();
     toast.success("Progreso reiniciado");
-  };
-
-  const getDoneTests = () => {
-    getTests();
-    let count = 0;
-    tests.forEach((t) => {
-      if (t.Ejercicio.length === doneExercisesTest(t.Ejercicio) && t.Ejercicio.length > 0) {
-        count += 1;
-      }
-    });
-    return count;
-  };
-
-  const createTest = async (newTest) => {
-    const { data: test, error: insertError } = await supabase
-      .from("Examen")
-      .insert([
-        {
-          mes: newTest.mes,
-          tema: newTest.tema,
-          fecha: newTest.fecha,
-          autor: newTest.autor,
-          descripcion: newTest.descripcion,
-          id_examen_categoria: newTest.categoria,
-        },
-      ])
-      .select();
-
-    if (insertError) throw insertError;
-
-    const TestFile = await uploadFile(`Archivo_Examen`, newTest.archivo, test[0].id_examen);
-    const { error } = await supabase.from("Examen").update({ archivo: TestFile }).eq("id_examen", test[0].id_examen);
-
-    if (error) throw error;
-
-    getTests();
-    toast.success("Examen creado con éxito");
-  };
-
-  const uploadFile = async (nombre, file, examenId) => {
-    if (!file) return;
-
-    const { error } = await supabase.storage.from("Ejercicios").upload(`${examenId}/${nombre}`, file);
-
-    if (error) throw error;
-
-    const { data: urlImg } = supabase.storage.from("Ejercicios").getPublicUrl(`${examenId}/${nombre}`);
-
-    return urlImg.publicUrl;
   };
 
   const addExtraExercise = async (table, topics) => {
@@ -193,13 +122,10 @@ export const DataProvider = ({ children }) => {
     <DataContext.Provider
       value={{
         exercises,
-        tests,
         formulas,
         topics,
         doneExercises,
         randomEx,
-        getTests,
-        createTest,
         getExercises,
         createExercise,
         getFormulas,
@@ -207,8 +133,6 @@ export const DataProvider = ({ children }) => {
         checkExercise,
         getDoneExercises,
         getRandomEx,
-        doneExercisesTest,
-        getDoneTests,
         deleteProgress,
       }}
     >

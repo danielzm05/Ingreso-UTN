@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDataContext } from "../../context/DataContext";
+import {useTestContext} from "../../context/TestContext";
 import { Input, TextArea } from "./Input";
 import "//unpkg.com/mathlive";
 import "katex/dist/katex.min.css";
@@ -8,7 +9,8 @@ import { SelectMultiple } from "./MultipleOption";
 import { PDfViewer } from "../ui/PdfViewer";
 
 export function NewExerciseForm() {
-  const { tests, getTests, createExercise, getTopics, topics, formulas, getFormulas } = useDataContext();
+  const { createExercise, getTopics, topics, formulas, getFormulas } = useDataContext();
+  const { tests, getTests } = useTestContext();
   const [formula, setFormula] = useState("");
   const [exFile, setExFile] = useState();
   const [exTopics, setExTopics] = useState([]);

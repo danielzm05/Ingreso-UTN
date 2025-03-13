@@ -1,5 +1,6 @@
 import { CircleCheckBig, FileBadge, Flame } from "lucide-react";
 import { useDataContext } from "../context/DataContext";
+import {useTestContext} from "../context/TestContext";
 import { CategoryDoughnut } from "../components/charts/CategoryDoughnut";
 import { WeekSummary } from "../components/charts/WeekSummary";
 import { RandomExercise } from "../components/ui/RandomExercise";
@@ -8,7 +9,8 @@ import { StatCard } from "../components/ui/StatCard";
 import { Shuffle } from "lucide-react";
 import { Button } from "../components/ui/Button";
 export function Dashboard() {
-  const { getDoneExercises, doneExercises, getRandomEx, randomEx, getDoneTests } = useDataContext();
+  const { getDoneExercises, doneExercises, getRandomEx, randomEx } = useDataContext();
+  const { getDoneTests } = useTestContext();
 
   useEffect(() => {
     getDoneExercises();
