@@ -34,7 +34,7 @@ export function UpdatePasswordPage() {
         <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full">
           <Input type="password" name="password" label="Nueva Contraseña" onChange={handleInputChange} placeholder="" />
           <Input type="password" name="password2" label="Confirmar Contraseña" onChange={handleInputChange} placeholder="" />
-          <input type="submit" value="Ingresar" className="h-9 mt-5 rounded-md font-semibold w-full bg-primary text-background cursor-pointer" />
+          <input type="submit" value="Cambiar contraseña" className="h-9 mt-5 rounded-md font-semibold w-full bg-primary text-background cursor-pointer" />
         </form>
       </section>
     </main>

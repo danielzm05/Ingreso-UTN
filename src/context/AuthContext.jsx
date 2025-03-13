@@ -60,9 +60,10 @@ export const AuthProvider = ({ children }) => {
     });
     if (error) {
       toast.error("Error al cambiar la contraseña");
-    } else {
-      toast.success("Contraseña cambiada correctamente");
-    }
+    } 
+      
+    toast.success("Contraseña cambiada con éxito");
+    navigate("/");
   };
 
   const resetPasswordEmail = async (email) => {
