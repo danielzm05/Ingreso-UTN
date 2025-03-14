@@ -118,6 +118,17 @@ export const DataProvider = ({ children }) => {
     setExercises(data);
   };
 
+  const getExercisesByFilter = async (filter) => {
+    const { data, error } = await supabase
+        .from('Ejercicio_Tema')
+        .select('Ejercicio(*, Examen(* , Examen_Categoria(*)), Ejercicio_Tema ( Tema(*) ),  Ejercicio_Formula ( Formula(*) ), Ejercicio_Completado(*))')
+        .eq('id_tema', filter);
+
+    if (error) throw error;
+    setExercises(data.map(e => e.Ejercicio)); 
+};
+
+
   return (
     <DataContext.Provider
       value={{
@@ -134,6 +145,7 @@ export const DataProvider = ({ children }) => {
         getDoneExercises,
         getRandomEx,
         deleteProgress,
+        getExercisesByFilter,
       }}
     >
       {children}

@@ -1,6 +1,8 @@
 import { Search } from "lucide-react";
-import { useState } from "react";
-export function SearchBar({ onSearch, placeholder }) {
+import { useState, memo } from "react";
+
+
+function SearchBar({ onSearch, placeholder }) {
   const [isFocused, setIsFocused] = useState(false);
   const [query, setQuery] = useState("");
 
@@ -12,7 +14,7 @@ export function SearchBar({ onSearch, placeholder }) {
 
   return (
     <div
-      className={`w-full p-3 flex items-center gap-1 rounded-xl bg-background2 ${
+      className={`w-full px-3 flex items-center gap-1 rounded-xl bg-background2 h-12 ${
         isFocused ? "border-2 border-primary" : ""
       } transition duration-100 ease-in`}
     >
@@ -28,3 +30,5 @@ export function SearchBar({ onSearch, placeholder }) {
     </div>
   );
 }
+
+export default memo(SearchBar);

@@ -1,7 +1,7 @@
 import { NavLink } from "react-router";
 import { HeaderItems } from "./HeaderItems";
 import { LogOutIcon, Menu } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useAuthContext } from "../../../context/AuthContext";
 
 import { Button } from "../Button";
@@ -13,7 +13,7 @@ export function Header() {
 
   return (
     <header className="py-5 sm:px-5 px-2 flex items-center justify-between max-h-[10vh]">
-      <NavLink to="/">
+      <NavLink to="/" className="outline-none">
         <h1 className="text-lg font-semibold text-nowrap select-none text-text1">
           <span className="text-primary">ⵥ</span> utn-ingreso.pro
         </h1>

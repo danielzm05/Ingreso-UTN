@@ -2,8 +2,7 @@ import { Link } from "react-router";
 import { Check } from "lucide-react";
 import { useRenderKatex } from "@/hooks/useRenderKatex";
 
-export function ExerciseCard({ id, id_examen, tema, fecha, examen, consigna, img, categorias = [], hecho }) {
-
+export function ExerciseCard({ id, id_examen, tema, fecha, mes, examen, consigna, img, categorias = [], hecho }) {
   return (
     <Link to={`/examenes/${id_examen}/ejercicio/${id}`}>
       <article className="w-full h-28 sm:h-32 flex justify-between p-3 gap-3 bg-card rounded-xl cursor-pointer hover:bg-hover transition duration-300 ease-in-out">
@@ -17,7 +16,7 @@ export function ExerciseCard({ id, id_examen, tema, fecha, examen, consigna, img
               </span>
             )}
             <p className="text-gray-500 text-sm font-semibold">
-              {examen} {fecha} {tema ? `| Tema ${tema}` : null}
+              {examen} {mes} {fecha} {tema ? `| Tema ${tema}` : null}
             </p>
           </header>
           <h1 className="max-h-16 sm:max-h-12 max-w-full text-sm sm:text-base text-text1 text-start font-semibold text-ellipsis overflow-hidden">

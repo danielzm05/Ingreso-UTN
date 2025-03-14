@@ -1,4 +1,6 @@
-export function StatCard({ title, stat, className, children }) {
+import { memo } from 'react'
+
+function StatCard({ title, stat, className, children }) {
   return (
     <article className={`flex flex-col justify-between bg-card rounded-xl p-3 h-full ${className}`}>
       <header>
@@ -11,3 +13,5 @@ export function StatCard({ title, stat, className, children }) {
     </article>
   );
 }
+
+export default memo(StatCard)
