@@ -5,9 +5,7 @@ import { useAuthContext } from "../context/AuthContext";
 import { useTestContext } from "../context/TestContext";
 import { FileTextIcon } from "lucide-react";
 import { Footer } from "@/components/ui/Footer";
-import parse from "html-react-parser";
-import { InlineMath } from "react-katex";
-import "katex/dist/katex.min.css";
+import { useRenderKatex } from "@/hooks/useRenderKatex";
 
 export function TestPage() {
   const { user } = useAuthContext();
@@ -17,15 +15,6 @@ export function TestPage() {
   useEffect(() => {
     getTests(id_examen);
   }, []);
-
-  const renderContent = (htmlString) =>
-    parse(htmlString, {
-      replace: (domNode) => {
-        if (domNode.name === "math") {
-          return <InlineMath math={domNode.children[0].data} />;
-        }
-      },
-    });
 
   return (
     <>
@@ -57,7 +46,7 @@ export function TestPage() {
                   id={ex.id_ejercicio}
                   numero={ex.numero}
                   id_examen={id_examen}
-                  consigna={renderContent(ex.consigna)}
+                  consigna={useRenderKatex(ex.consigna)}
                   hecho={ex.Ejercicio_Completado.some((e) => e.id_usuario === user?.id && e.id_ejercicio === ex.id_ejercicio)}
                 />
               ))}

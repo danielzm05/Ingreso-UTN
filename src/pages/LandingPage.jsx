@@ -41,7 +41,7 @@ export function LandingPage() {
           <h2 className="text-center text-3xl sm:text-4xl font-semibold text-text1">Practica con ejercicios de examenes anteriores</h2>
           <MarqueeVertical exercises={landingExercises} />
         </section>
-        <section className="flex sm:flex-row flex-col gap-10 sm:gap-4 justify-center items-center min-h-[80vh] sm:min-h-screen pl-5 py-10 sm:pl-10 bg-gradient-to-b from-background2 to-green-900 via-background2 ">
+        <section className="flex sm:flex-row flex-col gap-10 sm:gap-4 justify-between items-center min-h-[80vh] sm:min-h-screen pl-5 py-10 sm:pl-10 bg-gradient-to-b from-background2 to-green-900 via-background2 ">
           <div className="*:text-left flex flex-col gap-3">
             <h2 className=" text-3xl sm:text-4xl font-semibold text-text1">Todo lo que necesitas saber para aprobar</h2>
             <p className="text-text2 text-sm sm:text-[1rem] ">

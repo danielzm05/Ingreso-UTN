@@ -1,18 +1,8 @@
 import { Link } from "react-router";
 import { Check } from "lucide-react";
-import parse from "html-react-parser";
-import { InlineMath } from "react-katex";
-import "katex/dist/katex.min.css";
+import { useRenderKatex } from "@/hooks/useRenderKatex";
 
 export function ExerciseCard({ id, id_examen, tema, fecha, examen, consigna, img, categorias = [], hecho }) {
-  const renderContent = (htmlString) =>
-    parse(htmlString, {
-      replace: (domNode) => {
-        if (domNode.name === "math") {
-          return <InlineMath math={domNode.children[0].data} />;
-        }
-      },
-    });
 
   return (
     <Link to={`/examenes/${id_examen}/ejercicio/${id}`}>
@@ -31,7 +21,7 @@ export function ExerciseCard({ id, id_examen, tema, fecha, examen, consigna, img
             </p>
           </header>
           <h1 className="max-h-16 sm:max-h-12 max-w-full text-sm sm:text-base text-text1 text-start font-semibold text-ellipsis overflow-hidden">
-            {renderContent(consigna ? consigna : "")}
+            {useRenderKatex(consigna)}
           </h1>
           <div className="flex gap-3 mt-auto">
             {categorias.length > 0

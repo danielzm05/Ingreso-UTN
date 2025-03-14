@@ -2,9 +2,7 @@ import { Check, EyeIcon, EyeClosedIcon, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { PDfViewer } from "./PdfViewer";
 import { Link } from "react-router";
-import parse from "html-react-parser";
-import { InlineMath } from "react-katex";
-import "katex/dist/katex.min.css";
+import { useRenderKatex } from "@/hooks/useRenderKatex";
 
 export function ExercisePageCard({
   respuesta,
@@ -24,15 +22,6 @@ export function ExercisePageCard({
 }) {
   const [showSolution, setShowSolution] = useState(true);
 
-  const renderContent = (htmlString) =>
-    parse(htmlString, {
-      replace: (domNode) => {
-        if (domNode.name === "math") {
-          return <InlineMath math={domNode.children[0].data} />;
-        }
-      },
-    });
-
   return (
     <article className="m-3 sm:m-10 flex flex-col p-5 gap-3 border border-slate-800 rounded-xl bg-card">
       <section className="min-w-full flex flex-col gap-2 items-start justify-start">
@@ -43,7 +32,7 @@ export function ExercisePageCard({
             </p>
           </Link>
         </header>
-        <h1 className="max-w-full text-lg text-start font-semibold text-text1">{renderContent(consigna ? consigna : "")}</h1>
+        <h1 className="max-w-full text-lg text-start font-semibold text-text1">{useRenderKatex(consigna ? consigna : "")}</h1>
         {img && (
           <a href={img} target="_blank">
             <img src={img} alt={consigna} className="mt-3 border border-slate-800 rounded-xl max-h-80 object-cover" />
@@ -51,7 +40,7 @@ export function ExercisePageCard({
         )}
 
         <footer className="min-w-full flex justify-between mt-6 ">
-          <p className="text-end font-semibold text-text2">RTA: {renderContent(respuesta ? respuesta : "")}</p>
+          <p className="text-end font-semibold text-text2">RTA: {useRenderKatex(respuesta ? respuesta : "")}</p>
           <div className="flex gap-4 text-gray-500 font-medium">
             <div className="flex items-center gap-1  ">
               <label className="flex items-center cursor-pointer relative" htmlFor="check-2">
@@ -96,7 +85,7 @@ export function ExercisePageCard({
                       <span className="flex gap-1 items-center font-semibold text-text2">
                         <ChevronRight size={14} /> {f.Formula.nombre.toUpperCase()}
                       </span>
-                      <span className="pl-5 text-[16px] text-text1">{renderContent(f.Formula.formula)}</span>
+                      <span className="pl-5 text-[16px] text-text1">{useRenderKatex(f.Formula.formula)}</span>
                     </a>
                   </li>
                 ))}
