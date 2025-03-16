@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/Button";
 import { Shuffle, TrendingUp } from "lucide-react";
 import { Footer } from "@/components/ui/Footer";
 import { landingExercises } from "@/assets/LandingExercises";
-import ExercisePageCardImg from "../img/ExercisePageCard.png";
-import dashboardImg from "../img/dashboard.png";
+import ExercisePageCardImg from "../img/ExercisePageCard.webp";
+import dashboardImg from "../img/dashboard.webp";
 
 export function LandingPage() {
   const { getRandomEx, randomEx } = useDataContext();

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { Radical, FileText, ChartColumn, UserIcon } from "lucide-react";
+import { Radical, FileText, ChartColumn, UserIcon, HandHeart } from "lucide-react";
 
 export const HeaderItems = ({ isLogged, className }) => {
   return (
@@ -29,6 +29,12 @@ export const HeaderItems = ({ isLogged, className }) => {
             <li className="flex items-center gap-1 outline-none">
               <UserIcon size={18} />
               Perfil
+            </li>
+          </NavLink>
+          <NavLink to="/ayudar">
+            <li className="items-center gap-1 outline-none md:hidden sm:flex xl:flex">
+              <HandHeart size={18} />
+              Ayúdanos
             </li>
           </NavLink>
         </>

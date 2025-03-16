@@ -18,6 +18,7 @@ export function Footer() {
         <NavLink to="/">Inicio</NavLink>
         <NavLink to="/ejercicios">Ejercicios</NavLink>
         <NavLink to="/examenes">Examenes</NavLink>
+        <NavLink to="/ayudar">Ayúdanos</NavLink>
       </nav>
       <nav className="flex flex-col gap-2 text-sm text-text2 font-semibold border-l px-4 border-border1">
         <NavLink to="/ingresar">Ingresar</NavLink>

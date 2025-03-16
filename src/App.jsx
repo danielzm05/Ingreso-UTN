@@ -14,7 +14,8 @@ import { useAuthContext } from "./context/AuthContext";
 import { Route, Routes } from "react-router";
 import { ToasterContainer } from "./components/ui/Toaster";
 import { Header } from "./components/ui/header/Header";
-import { ProfilePage } from "./pages/ProfilePage";
+import { SupportPage } from "./pages/SupportPage.jsx";
+import { ProfilePage } from "./pages/ProfilePage.jsx";
 import { pdfjs } from "react-pdf";
 import { PageTracker } from "./components/PageTracker";
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/ejercicios" element={<Ejercicios />}></Route>
         <Route path="/examenes" element={<Examenes />}></Route>
+        <Route path="/ayudar" element={<SupportPage />}></Route>
         <Route path="/ingresar" element={<LoginPage />}></Route>
         <Route path="/registrarse" element={<SignupPage />}></Route>
         <Route path="/Examenes/:id_examen" element={<TestPage />}></Route>
